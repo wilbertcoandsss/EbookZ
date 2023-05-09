@@ -1,0 +1,97 @@
+body {
+    background-color: #eeeeee;
+}
+
+
+.navbar {
+    background-color: #eeeeee !important;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text,
+.nav-link {
+    color: #7E7E7E !important;
+    font-size: 20px;
+    transition: .3s ease;
+}
+
+.nav-link:hover {
+    color: #424242 !important;
+    transition: .3s ease;
+    transform: scale(1.1);
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;..");
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: black;
+}
+
+/* Setting the stroke to green using rgb values (0, 128, 0) */
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.brand-img {
+    width: 150px;
+    height: 50px;
+    margin-bottom: 28px;
+}
+
+.navbar-nav,
+.mr-auto {
+    flex: 1;
+    margin: auto !important;
+    display: flex;
+    justify-content: space-around;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    color: black;
+}
+
+.search-bar input[type="search"] {
+    width: 350px;
+    background-color: rgba(64, 89, 105, 0.3);
+    border-radius: 30px;
+    padding: 9px;
+    border: 1px solid rgb(188, 187, 187);
+    padding-left: 35px;
+    align-items: center;
+}
+
+.search-logo {
+    width: 13px;
+    height: 13px;
+    align-items: center;
+}
+
+form .search-submit {
+    margin-left: 8px;
+    position: absolute;
+    background: transparent;
+    border: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.regist-nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.regist-nav div button {
+    margin: 10px;
+}
+
+/* @media screen and (max-width: 990px){
+    .navbar{
+        flex-direction: column;
+    }
+} */
