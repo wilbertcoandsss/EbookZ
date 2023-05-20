@@ -15,4 +15,8 @@ class BookController extends Controller
         // dd($discBooks);
         return view('home', ['books' => $books, 'recBooks' => $recBooks, 'discBooks' => $discBooks]);
     }
+
+    public function insert(Request $req){
+
+    }
 }
