@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary nav-bar">
         <div class="container-fluid">
             <a class="navbar-brand ml-3 mr-5" href="#">
-                <a class="navbar-brand" href="#"><img class="brand-img"
+                <a class="navbar-brand" href="/"><img class="brand-img"
                         src="{{ Storage::url('assets/logo.png') }}"></a>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="text-align: center">
                 <ul class="navbar-nav d-flex justify-content-around w-100">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">My Books</a>
+                        <a class="nav-link active" aria-current="page" href="/mybooks">My Books</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Library</a>
@@ -56,7 +56,7 @@
     </nav>
 
     @yield('content')
-
+    @extends('layout.footer')
     {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>

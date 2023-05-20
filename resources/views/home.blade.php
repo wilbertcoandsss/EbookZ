@@ -151,7 +151,9 @@
         </div>
     </div>
 
+    <div>
 
+    </div>
     <div class="d-flex flex-row justify-content-around info-box mt-5 mb-5 p-5 ms-5 me-5 rounded-5">
         <div class="d-flex flex-col justify-content-evenly w-100 rec-book">
             <div>
