@@ -52,7 +52,7 @@
             <div class="d-flex flex-row">
                 @foreach ($books as $b)
                     <div class="d-flex flex-column rounded-4 rec-book w-100" style="font-family: 'Poppins', sans-serif;">
-                        <a href="">
+                        <a href="/bookDetail/{{$b->id}}">
                             <div class="d-flex justify-content-center mt-1 mb-3">
                                 <img class="book-pic-s" src="{{ Storage::url('books/' . $b->bookCover) }}">
                             </div>

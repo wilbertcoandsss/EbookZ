@@ -15,4 +15,9 @@ class PageController extends Controller
         $randomBooks = Book::find($randomBooksId);
         return view('mybooks', ['randomBooks' => $randomBooks, 'books' => $books]);
     }
+
+    public function goToBooksDetail($id){
+        $bookDetail = Book::where('id', $id)->get();
+        return view ('bookdetail', ['bookDetail' => $bookDetail]);
+    }
 }
