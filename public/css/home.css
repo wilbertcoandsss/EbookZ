@@ -382,6 +382,30 @@ input::-webkit-inner-spin-button {
     transition: .3s ease;
 }
 
+.alert{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    background-color:#d5edda;
+    color: #2a6537; 
+    margin-left: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 55px;
+    padding-right: 55px;
+}
+
+.success-alert{
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+
+
+
 /* @media screen and (max-width: 913px){
     .container{
         flex-direction: column !important;

@@ -42,4 +42,20 @@ class CartController extends Controller
 
         return redirect('/')->with('message', 'Product added to cart succesfully!');
     }
+
+    public function updateQty(Request $req, $id){
+
+        Cart::where('id', $id)->update([
+            'qty' => $req->qty
+        ]);
+
+
+        return redirect('cartPage/'.Auth::user()->id)->with('message', 'Game Quantity Updated!');
+    }
+
+    public function deleteCart($id){
+        Cart::where('id', $id)->delete();
+
+        return redirect('cartPage/'.Auth::user()->id)->with('message', 'Cart Deleted!');
+    }
 }

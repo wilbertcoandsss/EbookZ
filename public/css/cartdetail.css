@@ -1,0 +1,106 @@
+.book-pic-icon{
+    margin-bottom: 8px;
+    margin-top: 8px;
+    width: 150px;
+    height: 180px;
+}
+
+.add-book-btn{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-book-btn a{
+    text-decoration: none;
+    color: white;
+    background-color: #405969;
+    border: 1px ridge rgb(105, 103, 103);
+    font-size: 27px;
+    transition: .3s ease;
+    padding: 10px 20px 10px 20px;
+    border-radius: 15px;
+}
+
+.add-book-btn a:hover{
+    background-color: snow;
+    color: black;
+    transition: .3s ease;
+}
+
+table{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    outline-color: gainsboro;
+    outline-style: solid;
+}
+
+td {
+    border-top: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
+    padding: 13px;
+    background-color: whitesmoke;
+    align-items: left;
+}
+
+
+th{
+    border: none;
+    background-color: rgb(186, 186, 186);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
+    align-items: left;
+    text-align: left;
+}
+
+.test {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.submit-qty input{
+    border: none;
+    background: #405969;
+    padding: 10px;
+    width: 100%;
+    color: white;
+    border-radius: 15px;
+    transition: .3s ease;
+}
+
+.submit-qty input:hover{
+    transition: .3s ease;
+    background-color: snow;
+    color: black;
+}
+
+.remove-cart{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.remove-cart a{
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    background-color: snow;
+    text-align: center;
+    transition: .3s ease;
+}
+
+.remove-cart a:hover{
+    color: white;
+    background-color: #283d4a;
+    transition: .3s ease;
+}

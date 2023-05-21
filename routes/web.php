@@ -32,3 +32,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/cartPage/{id}', [CartController::class, 'goToCartPage']);
 
 Route::post('/addToCart/{id}', [CartController::class, 'addToCart']);
+
+Route::post('/updateQty/{id}', [CartController::class, 'updateQty']);
+
+Route::get('/deleteCart/{id}', [CartController::class, 'deleteCart']);
