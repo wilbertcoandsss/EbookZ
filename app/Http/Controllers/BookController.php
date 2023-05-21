@@ -17,6 +17,6 @@ class BookController extends Controller
     }
 
     public function insert(Request $req){
-        
+
     }
 }

@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role')->default('customer');
+            $table->date('dob');
+            $table->string('gender');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -30,3 +33,4 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
+

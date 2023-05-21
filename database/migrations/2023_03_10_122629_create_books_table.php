@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('bookDescription');
             $table->date('bookPublishDate');
             $table->unsignedBigInteger('bookPage');
+            $table->string("ISBN");
+            $table->integer("bookStock");
             $table->string('bookCover');
             $table->string('bookPdf')->nullable();
             $table->boolean('isDiscount')->nullable();

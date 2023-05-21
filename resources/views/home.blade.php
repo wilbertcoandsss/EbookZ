@@ -79,22 +79,28 @@
         </div>
 
         <div class="box rounded-5 ms-3 me-3">
-            <h2>Popular in 2023</h2>
+            <h2 style="font-family: 'Playfair Display'; font-weight: 600; color:#405969; font-size: 40px">Popular in 2023</h2>
             <br>
-            <h4>Here is the most popular novel back in 2023!
+            <h4 style="font-family: 'Poppins'; font-weight: 600; font-size: 18px;">Here is the most popular novel back in 2023!
             </h4>
             <div class="d-flex flex-row">
                 @foreach ($books as $b)
                     <div class="d-flex flex-column rounded-4 rec-book w-100" style="font-family: 'Poppins', sans-serif;">
-                        <a href="">
+                        <a href="/bookDetail/{{$b->id}}">
                             <div class="d-flex justify-content-center mt-1 mb-3">
                                 <img class="book-pic-s" src="{{ Storage::url('books/' . $b->bookCover) }}">
                             </div>
                             <div class="text-center mb-3">
-
-                                {{ $b->bookName }}
+                                <div class="title-box" style="font-size: 20px">
+                                    {{ $b->bookName }}
+                                </div>
+                                <div class="author-box">
+                                    {{ $b->bookAuthor }}
+                                </div>
                                 <br>
-                                Rp. {{ $b->bookPrice }}
+                                <div class="price-box fs-5">
+                                    Rp. {{ $b->bookPrice }}
+                                </div>
                                 <br>
                                 <div class="genre-box mb-3 mt-3">
                                     {{ $b->genre->genreName }}
@@ -125,7 +131,7 @@
             @foreach ($books as $b)
                 <div class="d-flex flex-column rounded-4 rec-book w-100 ms-3 me-3"
                     style="font-family: 'Poppins', sans-serif;">
-                    <a class="d-flex flex-row w-100 justify-content-around" href="">
+                    <a class="d-flex flex-row w-100 justify-content-around" href="/bookDetail/{{$b->id}}">
                         <div class="d-flex justify-content-center mt-1 mb-3">
                             <img class="book-pic" src="{{ Storage::url('books/' . $b->bookCover) }}">
                         </div>
@@ -246,94 +252,6 @@
             <a href="#">
                 <button type="button" class="mt-4 button-shop">Shop Now</button>
             </a>
-        </div>
-    </div>
-
-    <div class="ps-5 pe-5 pt-5 pb-5 d-flex flex-row justify-content-between" style="background-color: #637784;">
-        <div>
-            <h1 style="font-family: 'Poppins'; font-weight: 600; color: white;">Subscribe our newsletter
-                <br>
-                for newest books updates
-            </h1>
-        </div>
-        <div class="d-flex align-items-center">
-            <form class="form-inline my-2 my-lg-0 m-auto" onclick="getVal()">
-                @csrf
-                <input class="subscribe-bar me-3" type="email" id="email-sub" placeholder="Enter your email address">
-                <button type="button" class="btn-sub" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Subscribe
-                </button>
-
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Subscription</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <span id="show-email"></span>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="ps-5 pe-5 pt-5 pb-5" style="background: #3E3E3E;">
-        <div class="footer-top d-flex flex-row justify-content-between pb-5" style="border-bottom: 1px solid #C8C8C8">
-            <div class="title-footer flex-column w-50">
-                <div class="mb-3">
-                    <img width="182px" height="91px" src="{{ Storage::url('assets/logowhite.png') }}">
-                </div>
-                <div class="text-footer">
-                    EbookZ Store is one of the best bookstore that currently happening in Indonesia.
-                    You can buy and view books, also get a reward from us!
-                </div>
-            </div>
-            <div class="contact-footer flex-column align-items-center">
-                <div class="text-footer">
-                    <h1>Contact Us</h1>
-                </div>
-                <div class="text-footer">
-                    Service@gmail.com
-                </div>
-                <div class="text-footer">
-                    Jl. Jalur Sutera Barat
-                </div>
-                <div class="text-footer">
-                    +62
-                </div>
-            </div>
-            <div class="socmed-footer align-items-end">
-                <div class = "text-footer">
-                    <h1>Follow Us!</h1>
-                </div>
-                <div class="text-footer">
-                    Yes, we are on social media!
-                </div>
-                <div class="flex-row socmed-icon">
-                    <img width="64px" height="64px" src="{{ Storage::url('assets/facebook.png') }}">
-                    <img width="64px" height="64px" src="{{ Storage::url('assets/twitter.png') }}">
-                    <img width="72px" height="72px" src="{{ Storage::url('assets/instagram.png') }}">
-                </div>
-            </div>
-        </div>
-        <div class="mt-5 d-flex footer-bottom align-items-center justify-content-between">
-            <div class="text-footer">
-                © 2023 Ebookz. All rights reserved
-            </div>
-            <div class="payment-icon d-flex flex-row">
-                <img width="112px" height="45px" src="{{ Storage::url('assets/mandiri.png') }}">
-                <img width="112px" height="45px" src="{{ Storage::url('assets/visa.png') }}">
-                <img width="112px" height="45px" src="{{ Storage::url('assets/bca.png') }}">
-            </div>
         </div>
     </div>
 

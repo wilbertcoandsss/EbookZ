@@ -25,15 +25,19 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="text-align: center">
                 <ul class="navbar-nav d-flex justify-content-around w-100">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/mybooks">My Books</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/mybooks">My Books</a>
+                        </li>
+                    @endauth
                     <li class="nav-item">
                         <a class="nav-link" href="#">Library</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href ="#">Mission</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mission</a>
+                        </li>
+                    @endauth
                 </ul>
                 <ul class="navbar-nav d-flex justify-content-around w-100">
                     <form class="form-inline my-2 my-lg-0 m-auto search-bar">
@@ -44,12 +48,42 @@
                     </form>
                 </ul>
                 <ul class="navbar-nav d-flex justify-content-around w-100">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Sign Up</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a href = "/cartPage/{{Auth::user()->id}}"><img src="{{ Storage::url('/assets/cart.png') }}" width="55px" height="55px" style="align-items: center"></a>
+                        </li>
+                        <div class="auth-container">
+                            <div class="dropdown">
+                                <button class="dropbtn">
+                                    @if (Auth::user()->profilepic == null)
+                                        @if (Auth::user()->gender == 'Male')
+                                            <img class="profile-pic" src="{{ Storage::url('assets/male_avatar.png') }}">
+                                        @else
+                                            <img class="profile-pic" src="{{ Storage::url('assets/female_avatar.png') }}">
+                                        @endif
+                                    @else
+                                        <img class="profile-pic" src={{ Storage::url('/') . Auth::user()->profilepic }}>
+                                    @endif
+                                </button>
+                                <div class="dropdown-content">
+                                    <div class="greetings">
+                                        Hi, <strong>{{ Auth::user()->name }}</strong>
+                                    </div>
+                                    <hr class="line">
+                                    <a href="/profilePage">Your Profile</a>
+                                    <a href="/transactionHistoryPage/{{ Auth::user()->id }}">Transaction History</a>
+                                    <a href="/logout">Sign out</a>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/loginPage">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/registerPage">Sign Up</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>

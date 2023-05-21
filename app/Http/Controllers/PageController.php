@@ -20,4 +20,9 @@ class PageController extends Controller
         $bookDetail = Book::where('id', $id)->get();
         return view ('bookdetail', ['bookDetail' => $bookDetail]);
     }
+
+    public function goToLoginPage(){
+        return view ('login');
+    }
+
 }

@@ -5,7 +5,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <div style="margin-left: 280px; margin-right: 280px;">
-        <h1>Featured Today</h1>
+        <h1 style="font-family: 'Poppins'; font-weight: 600; ">Featured Today</h1>
         <div class="d-flex flex-row justify-content-around mt-1 mb-3">
             <img style="margin-right: 50px" class="book-pic" src="{{ Storage::url('books/' . $randomBooks->bookCover) }}">
             <div class="text-left mb-3">
