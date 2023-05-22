@@ -36,3 +36,5 @@ Route::post('/addToCart/{id}', [CartController::class, 'addToCart']);
 Route::post('/updateQty/{id}', [CartController::class, 'updateQty']);
 
 Route::get('/deleteCart/{id}', [CartController::class, 'deleteCart']);
+
+Route::get('/checkOut/{id}', [CartController::class, 'checkOut']);

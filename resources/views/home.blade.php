@@ -5,7 +5,11 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-
+    @if (Session::has('message'))
+        <div class="alert"><img class="success-alert" src="{{ Storage::url('assets/success.png') }}">
+            <h3>{{ Session::get('message') }}</h3>
+        </div>
+    @endif
     <div id="carouselExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"

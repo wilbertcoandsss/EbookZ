@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Cart;
+use App\Models\TransactionDetail;
+use App\Models\TransactionHeader;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,5 +59,44 @@ class CartController extends Controller
         Cart::where('id', $id)->delete();
 
         return redirect('cartPage/'.Auth::user()->id)->with('message', 'Cart Deleted!');
+    }
+
+    public function checkOut($id){
+        $count = Cart::where('user_id', $id)->count();
+
+        $books = Cart::where('user_id', $id)->get();
+
+        $array = array();
+
+        TransactionHeader::insert([
+            'user_id' => Auth::user()->id,
+            'tr_date' => Carbon::now(),
+            'total_item' => $count,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        for ($i = 0; $i < $count; $i++){
+            $array[] = array(
+                'book_id' => $books[$i]->book_id,
+                'qty' => $books[$i]->qty
+            );
+        }
+
+        $getLatestData = TransactionHeader::latest()->first();
+
+        for ($i = 0; $i < $count; $i++){
+            TransactionDetail::insert([
+                'transaction_header_id' => $getLatestData->id,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'book_id' => $books[$i]->book_id,
+                'qty' => $books[$i]->qty
+            ]);
+        }
+
+        Cart::truncate();
+        return redirect('cartPage/'.Auth::user()->id)->with('message', 'Checkout success!');
+
     }
 }

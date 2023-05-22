@@ -1,3 +1,8 @@
+*{
+    font-family: 'Poppins';
+    font-weight: 500;
+}
+
 .book-pic-icon{
     margin-bottom: 8px;
     margin-top: 8px;
@@ -12,18 +17,18 @@
     justify-content: flex-end;
 }
 
-.add-book-btn a{
+.add-book-btn button{
     text-decoration: none;
     color: white;
     background-color: #405969;
     border: 1px ridge rgb(105, 103, 103);
-    font-size: 27px;
+    font-size: 25px;
     transition: .3s ease;
     padding: 10px 20px 10px 20px;
     border-radius: 15px;
 }
 
-.add-book-btn a:hover{
+.add-book-btn button:hover{
     background-color: snow;
     color: black;
     transition: .3s ease;

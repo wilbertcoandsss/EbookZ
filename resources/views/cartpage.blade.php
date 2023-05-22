@@ -14,6 +14,8 @@
             <h3>{{ Session::get('message') }}</h3>
         </div>
     @endif
+
+    @if(!$cart->isEmpty())
     <div class="test">
         <br>
         <h1 class="text-center">My Cart</h1>
@@ -24,8 +26,8 @@
                 <th>Book Price</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
-                <th></th>
-                <th></th>
+                <th colspan="2" style="text-align: center">Action</th>
+                {{-- <th></th> --}}
             </thead>
             <tbody>
                 @foreach ($cart as $c)
@@ -40,8 +42,8 @@
                             <td>
                                 <div class="form-content-1">
                                     <div class="form-insert">
-                                        <input id="priceInsert" type="number" name="qty"
-                                        value = "{{$c->qty}}" min="1">
+                                        <input id="priceInsert" type="number" name="qty" value="{{ $c->qty }}"
+                                            min="1">
                                     </div>
                                 </div>
                             </td>
@@ -65,12 +67,41 @@
                 @endforeach
             </tbody>
         </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure want to checkout all these books ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
+                        <form action = "/checkOut/{{Auth::user()->id}}" method="GET">
+                            <button type="submit" class="btn btn-primary">Checkout</button>
+                        </form>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <strong style="text-align: right; font-family: 'Poppins'; font-size: 25px;">Total Price :
             {{ $grandTotal }}</strong>
-        <div class="add-book-btn">
-            <a href="/checkOut/{{ Auth::user()->id }}">
+        <div class="add-book-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            {{-- /checkOut/{{ Auth::user()->id }} --}}
+            <button>
                 Checkout
-            </a>
+            </button>
         </div>
     </div>
+    @else
+    <div class="d-flex flex-column justify-content-center text-center mt-5 mb-5">
+        <h1>You have no ongoing cart at the moment...</h1>
+        <h1><a href = "/">Go Find One!</a></h1>
+    </div>
+    @endif
 @endsection
