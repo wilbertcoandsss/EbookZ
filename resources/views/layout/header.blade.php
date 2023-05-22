@@ -49,8 +49,13 @@
                 </ul>
                 <ul class="navbar-nav d-flex justify-content-around w-100">
                     @auth
-                        <li class="nav-item">
-                            <a href = "/cartPage/{{Auth::user()->id}}"><img src="{{ Storage::url('/assets/cart.png') }}" width="55px" height="55px" style="align-items: center"></a>
+                    @php
+                        $cartCount = request()->session()->get('cartCounter', '');
+                    @endphp
+                        <li class="d-flex nav-link align-items-center justify-content-center">
+                            <a class = "d-flex align-items-center justify-content-center" style = "text-decoration:none"href = "/cartPage/{{Auth::user()->id}}"><img src="{{ Storage::url('/assets/cart].png') }}" width="45px" height="45px" style="align-items: center">
+                                <span style = "position: absolute; background-color: #405969; border-radius: 15px; margin-left: 35px; margin-top: -15px; z-index: 1"class="badge">{{$cartCount}}</span>
+                            </a>
                         </li>
                         <div class="auth-container">
                             <div class="dropdown">

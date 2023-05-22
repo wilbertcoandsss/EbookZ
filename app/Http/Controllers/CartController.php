@@ -95,7 +95,8 @@ class CartController extends Controller
             ]);
         }
 
-        Cart::truncate();
+        Cart::where('user_id', $id)->truncate();
+        session(['cartCounter' => 0]);
         return redirect('cartPage/'.Auth::user()->id)->with('message', 'Checkout success!');
 
     }

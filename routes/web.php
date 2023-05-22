@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,7 @@ Route::post('/updateQty/{id}', [CartController::class, 'updateQty']);
 Route::get('/deleteCart/{id}', [CartController::class, 'deleteCart']);
 
 Route::get('/checkOut/{id}', [CartController::class, 'checkOut']);
+
+Route::get('/transactionHistoryPage/{id}', [TransactionController::class, 'transactionHistoryPage']);
+
+Route::get('/transactionDetailPage/{id}', [TransactionController::class, 'transactionDetailPage']);
