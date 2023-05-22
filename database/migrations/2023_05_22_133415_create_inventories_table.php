@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id');
             $table->integer('qty');
             $table->timestamps();
+            $table->boolean('isBookOpen')->default('0');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('book_id')->references('id')->on('books')->onUpdate('cascade')->onDelete('cascade');
             $table->primary(['user_id', 'book_id']);

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('role')->default('customer');
             $table->date('dob');
             $table->string('gender');
+            $table->unsignedBigInteger('readTime')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

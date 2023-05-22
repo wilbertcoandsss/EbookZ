@@ -80,9 +80,9 @@
                         Are you sure want to checkout all these books ?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
+                        <button type="button" class="btn" style = "background-color: gainsboro; color: black" data-bs-dismiss="modal">Back</button>
                         <form action = "/checkOut/{{Auth::user()->id}}" method="GET">
-                            <button type="submit" class="btn btn-primary">Checkout</button>
+                            <button type="submit" class="btn" style="background-color: #405969; color:white">Checkout</button>
                         </form>
                         </button>
                     </div>

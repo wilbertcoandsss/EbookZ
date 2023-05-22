@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('isDiscount')->nullable();
             $table->unsignedBigInteger('publisherID');
             $table->unsignedBigInteger('genreID');
+            $table->boolean('isOpened')->nullable();
             $table->foreign("publisherID")->references('id')->on('publishers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign("genreID")->references('id')->on('genres')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

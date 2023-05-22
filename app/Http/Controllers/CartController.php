@@ -14,55 +14,65 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     //
-    public function goToCartPage($id){
+    public function goToCartPage($id)
+    {
         $cart = Cart::where('user_id', '=', "$id")->get();
 
-        return view ('cartpage', ['cart' => $cart]);
+        return view('cartpage', ['cart' => $cart]);
     }
 
-    public function addToCart(Request $req, $id){
-        $book = Book::find($id);
+    public function addToCart(Request $req, $id)
+    {
 
-        $qty = $req->qty;
+        if (!Auth::check()) {
+            return redirect('loginPage');
+        } else {
 
-        $check = Cart::where('book_id', '=', "$req->id")->where('user_id', '=', Auth::user()->id)->first();
+            $book = Book::find($id);
 
-        if ($check == NULL){
-            Cart::insert([
-                'user_id' => Auth::user()->id,
-                'book_id' => $book->id,
-                'qty' => $qty,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
+            $qty = $req->qty;
+
+            $check = Cart::where('book_id', '=', "$req->id")->where('user_id', '=', Auth::user()->id)->first();
+
+            if ($check == NULL) {
+                Cart::insert([
+                    'user_id' => Auth::user()->id,
+                    'book_id' => $book->id,
+                    'qty' => $qty,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ]);
+            } else {
+                $incrementQty = $check->qty + $qty;
+                Cart::where('book_id', $req->id)->update([
+                    'qty' => $incrementQty
+                ]);
+            }
+
+            return redirect('/')->with('message', 'Product added to cart succesfully!');
         }
-        else{
-            $incrementQty = $check->qty + $qty;
-            Cart::where('book_id', $req->id)->update([
-                'qty' => $incrementQty
-            ]);
-        }
-
-        return redirect('/')->with('message', 'Product added to cart succesfully!');
     }
 
-    public function updateQty(Request $req, $id){
+    public function updateQty(Request $req, $id)
+    {
 
         Cart::where('id', $id)->update([
             'qty' => $req->qty
         ]);
 
 
-        return redirect('cartPage/'.Auth::user()->id)->with('message', 'Game Quantity Updated!');
+        return redirect('cartPage/' . Auth::user()->id)->with('message', 'Game Quantity Updated!');
     }
 
-    public function deleteCart($id){
+    public function deleteCart($id)
+    {
         Cart::where('id', $id)->delete();
 
-        return redirect('cartPage/'.Auth::user()->id)->with('message', 'Cart Deleted!');
+        return redirect('cartPage/' . Auth::user()->id)->with('message', 'Cart Deleted!');
     }
 
-    public function checkOut($id){
+    public function checkOut($id)
+    {
         $count = Cart::where('user_id', $id)->count();
 
         $books = Cart::where('user_id', $id)->get();
@@ -77,7 +87,7 @@ class CartController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
-        for ($i = 0; $i < $count; $i++){
+        for ($i = 0; $i < $count; $i++) {
             $array[] = array(
                 'book_id' => $books[$i]->book_id,
                 'qty' => $books[$i]->qty
@@ -86,7 +96,7 @@ class CartController extends Controller
 
         $getLatestData = TransactionHeader::latest()->first();
 
-        for ($i = 0; $i < $count; $i++){
+        for ($i = 0; $i < $count; $i++) {
             TransactionDetail::insert([
                 'transaction_header_id' => $getLatestData->id,
                 'created_at' => Carbon::now(),
@@ -96,10 +106,10 @@ class CartController extends Controller
             ]);
         }
 
-        for ($i = 0; $i < $count; $i++){
+        for ($i = 0; $i < $count; $i++) {
             $check = Inventory::where('book_id', $books[$i]->book_id)->exists();
 
-            if ($check == NULL){
+            if ($check == NULL) {
                 Inventory::insert([
                     'book_id' => $books[$i]->book_id,
                     'user_id' => Auth::user()->id,
@@ -107,15 +117,12 @@ class CartController extends Controller
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ]);
-            }
-            else{
-
+            } else {
             }
         }
 
         Cart::where('user_id', $id)->truncate();
         session(['cartCounter' => 0]);
-        return redirect('cartPage/'.Auth::user()->id)->with('message', 'Checkout success!');
-
+        return redirect('cartPage/' . Auth::user()->id)->with('message', 'Checkout success!');
     }
 }

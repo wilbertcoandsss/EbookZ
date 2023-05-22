@@ -26,6 +26,10 @@ Route::get('/bookDetail/{id}', [PageController::class, 'goToBooksDetail']);
 
 Route::get('/loginPage', [PageController::class, 'goToLoginPage']);
 
+Route::get('/registerPage', [PageController::class, 'goToRegisterPage']);
+
+Route::post('/register', [AuthController::class, 'register']);
+
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/logout', [AuthController::class, 'logout']);
@@ -43,3 +47,5 @@ Route::get('/checkOut/{id}', [CartController::class, 'checkOut']);
 Route::get('/transactionHistoryPage/{id}', [TransactionController::class, 'transactionHistoryPage']);
 
 Route::get('/transactionDetailPage/{id}', [TransactionController::class, 'transactionDetailPage']);
+
+Route::get('/readingBookPage/{id}', [BookController::class, 'readingPage']);
