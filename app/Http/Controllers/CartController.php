@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Cart;
+use App\Models\Inventory;
 use App\Models\TransactionDetail;
 use App\Models\TransactionHeader;
 use Carbon\Carbon;
@@ -93,6 +94,23 @@ class CartController extends Controller
                 'book_id' => $books[$i]->book_id,
                 'qty' => $books[$i]->qty
             ]);
+        }
+
+        for ($i = 0; $i < $count; $i++){
+            $check = Inventory::where('book_id', $books[$i]->book_id)->exists();
+
+            if ($check == NULL){
+                Inventory::insert([
+                    'book_id' => $books[$i]->book_id,
+                    'user_id' => Auth::user()->id,
+                    'qty' => $books[$i]->qty,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ]);
+            }
+            else{
+
+            }
         }
 
         Cart::where('user_id', $id)->truncate();

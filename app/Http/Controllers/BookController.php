@@ -12,7 +12,12 @@ class BookController extends Controller
 {
     //
     public function index(){
-        $cartCount = Cart::where('user_id', Auth::user()->id)->count();
+        if (Auth::user()){
+            $cartCount = Cart::where('user_id', Auth::user()->id)->count();
+        }
+        else{
+            $cartCount = 0;
+        }
         $session = app('session');
         $session->put('cartCounter', $cartCount);
         $books = Book::all();

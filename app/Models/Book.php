@@ -21,4 +21,8 @@ class   Book extends Model
     public function transactiondetails(){
         return $this->hasMany(TransactionDetail::class, 'book_id');
     }
+
+    public function inventory(){
+        return $this->hasMany(Inventory::class, 'book_id');
+    }
 }

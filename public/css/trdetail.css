@@ -12,9 +12,11 @@
 .top-con h1 {
     text-align: left;
     margin-top: 25px;
-    font-size: 45px;
+    font-size: 30px;
 }
 
 .tr-bot h1{
     text-align: right;
+    font-size: 30px;
+    margin-bottom: 50px;
 }

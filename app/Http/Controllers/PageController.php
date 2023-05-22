@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Inventory;
+use App\Models\TransactionDetail;
+use App\Models\TransactionHeader;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -13,7 +17,10 @@ class PageController extends Controller
         $amountBooks = Book::get()->count();
         $randomBooksId = rand(1, $amountBooks);
         $randomBooks = Book::find($randomBooksId);
-        return view('mybooks', ['randomBooks' => $randomBooks, 'books' => $books]);
+
+        $userBooks = Inventory::where('user_id', Auth::user()->id)->get();
+
+        return view('mybooks', ['randomBooks' => $randomBooks, 'books' => $books, 'userBooks' => $userBooks]);
     }
 
     public function goToBooksDetail($id){

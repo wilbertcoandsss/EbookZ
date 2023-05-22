@@ -5,6 +5,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/cartdetail.css') }}">
     <link rel="stylesheet" href="{{ asset('css/trdetail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/details.css') }}">
     <div class="top-con">
         @php
             $TotalPrice = 0;
@@ -18,14 +19,18 @@
             <h1>Customer: {{ $thdetail->users->name }}</h1>
             <table style="border-collapse: collapse">
                 <thead>
-                    <th>Game Title</th>
-                    <th>Game price</th>
+                    <th>Book Cover</th>
+                    <th>Book Title</th>
+                    <th>Book Price</th>
                     <th>Quantity</th>
                     <th>Sub Total</th>
                 </thead>
                 <tbody>
                     @foreach ($trdetail as $td)
                         <tr>
+                            <td>
+                                <img class="book-pic-icon" src="{{ Storage::url('books/' . $td->books->bookCover) }}">
+                            </td>
                             <td>{{ $td->books->bookName }}</td>
                             <td>{{ $td->books->bookPrice }}</td>
                             <td>{{ $td->qty }}</td>
@@ -33,13 +38,13 @@
                                 $SubTotal = $td->books->bookPrice * $td->qty;
                                 $TotalPrice += $td->books->bookPrice * $td->qty;
                             @endphp
-                            <td>${{ $SubTotal}}</td>
+                            <td>Rp. {{ $SubTotal}}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="tr-bot">
-                <h1>Total: ${{ $TotalPrice }}</h1>
+                <h1>Total: Rp. {{ $TotalPrice }}</h1>
             </div>
         </div>
     </div>

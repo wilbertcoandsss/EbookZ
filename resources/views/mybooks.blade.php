@@ -41,23 +41,23 @@
 
         <h1>Your Books</h1>
         <div class="d-flex flex-row">
-            @foreach ($books as $b)
+            @foreach ($userBooks as $b)
                 <div class="d-flex flex-column rounded-4 rec-book w-100" style="font-family: 'Poppins', sans-serif;">
                     <a href="">
                         <div class="d-flex justify-content-center mt-1 mb-3">
-                            <img class="book-pic-s" src="{{ Storage::url('books/' . $b->bookCover) }}">
+                            <img class="book-pic-s" src="{{ Storage::url('books/' . $b->books->bookCover) }}">
                         </div>
                         <div class="text-center mb-3">
                             <div class="title-box" style="font-size: 20px">
-                                {{ $b->bookName }}
+                                {{ $b->books->bookName }}
                             </div>
                             <div class="author-box">
-                                {{ $b->bookAuthor }}
+                                {{ $b->books->bookAuthor }}
                             </div>
                             <br>
                             <br>
                             <div class="genre-box mb-3 mt-3">
-                                {{ $b->genre->genreName }}
+                                {{ $b->books->genre->genreName }}
                             </div>
                         </div>
                     </a>
