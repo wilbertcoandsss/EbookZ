@@ -1,0 +1,44 @@
+*{
+    font-family: 'Poppins';
+    font-weight: 600;
+}
+
+.top-container{
+    background-color: white;
+    padding: 50px;
+    border-radius: 35px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.claim-btn{
+    border: none;
+    background: #405969;
+     color: white;
+     padding: 15px;
+     transition: .3s ease;
+     border-radius: 40px;
+     width: 80%;
+}
+
+.claim-btn:disabled{
+    opacity: 0.5;
+}
+
+.claim-btn:hover{
+    transition: .3s ease;
+    transform: scale(1.1);
+    background-color: snow;
+    color: #405969;
+}
+
+.btn-disable{
+    border: none;
+    background: #405969;
+     color: white;
+     padding: 15px;
+     transition: .3s ease;
+     border-radius: 40px;
+     width: 80%;
+     opacity: 0.5;
+}

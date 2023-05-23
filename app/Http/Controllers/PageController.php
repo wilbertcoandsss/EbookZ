@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Inventory;
+use App\Models\Mission;
+use App\Models\MissionUser;
 use App\Models\TransactionDetail;
 use App\Models\TransactionHeader;
 use App\Models\User;
@@ -20,9 +22,8 @@ class PageController extends Controller
         if (session()->has('startTime') != null){
             $currentTime = Carbon::now();
             $anotherTime = session()->get('startTime');
-            $minutesDifference = $currentTime->diffInMinutes($anotherTime);
+            $minutesDifference = ceil($currentTime->diffInMinutes($anotherTime));
 
-            // dd($minutesDifference);
             if (Auth::user()->readTime == null){
                 // dd(Auth::user()->readTime);
                 User::where('id', Auth::user()->id)->update([
@@ -49,6 +50,8 @@ class PageController extends Controller
 
         $userBooks = Inventory::where('user_id', Auth::user()->id)->get();
 
+
+
         return view('mybooks', ['randomBooks' => $randomBooks, 'books' => $books, 'userBooks' => $userBooks, 'readBooks' => $readBooks]);
     }
 
@@ -63,6 +66,46 @@ class PageController extends Controller
 
     public function goToRegisterPage(){
         return view ('register');
+    }
+
+    public function goToMissionPage(){
+
+        $missions = Mission::all();
+        $currentUserId = Auth::user()->id;
+        $books = Book::whereDoesntHave('inventory', function ($query) use ($currentUserId) {
+            $query->where('user_id', $currentUserId);
+        })->get();
+
+        $bookUserCount = Inventory::where('user_id', Auth::user()->id)->count();
+
+        $missionUser = MissionUser::where('user_id', Auth::user()->id)->get();
+        // dd($books);
+        // foreach($books as $b){
+        //     dd($b->bookName);
+        // }
+        return view ('mission', ['missions' => $missions, 'books' => $books, 'bookUserCount' => $bookUserCount, 'missionDone' => $missionUser]);
+    }
+
+    public function claimRewards($id, $bid){
+        $mission = Mission::find($id);
+        $book = Book::find($bid);
+
+        Inventory::insert([
+            'book_id' => $book->id,
+            'user_id' => Auth::user()->id,
+            'qty' => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        MissionUser::insert([
+            'user_id' => Auth::user()->id,
+            'mission_id' => $mission->id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        return redirect('myMission');
     }
 
 }

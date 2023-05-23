@@ -28,6 +28,7 @@ class BookSeeder extends Seeder
             'bookPdf' => "Bumi.pdf",
             'isDiscount' => TRUE,
             'publisherID' => 2,
+            'bookPoints' => 45000,
             'genreID' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -45,6 +46,7 @@ class BookSeeder extends Seeder
             'bookCover' => "Bulan.jpg",
             'bookPdf' => "Bulan.pdf",
             'publisherID' => 2,
+            'bookPoints' => 40000,
             'genreID' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -62,6 +64,7 @@ class BookSeeder extends Seeder
             'bookCover' => "Matahari.jpg",
             'bookPdf' => "Matahari.pdf",
             'publisherID' => 2,
+            'bookPoints' => 35000,
             'genreID' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -79,6 +82,7 @@ class BookSeeder extends Seeder
             'bookCover' => "Bintang.jpg",
             'bookPdf' => "Bintang.pdf",
             'publisherID' => 2,
+            'bookPoints' => 50000,
             'genreID' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

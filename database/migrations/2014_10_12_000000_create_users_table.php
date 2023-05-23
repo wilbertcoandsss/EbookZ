@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('role')->default('customer');
             $table->date('dob');
             $table->string('gender');
-            $table->unsignedBigInteger('readTime')->default(0);
+            $table->double('readTime')->default(0);
+            $table->unsignedInteger('points')->default(0);
+            $table->unsignedBigInteger('recentOpenedBook')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

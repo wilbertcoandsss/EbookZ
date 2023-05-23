@@ -27,6 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('publisherID');
             $table->unsignedBigInteger('genreID');
             $table->boolean('isOpened')->nullable();
+            $table->unsignedBigInteger('bookPoints');
             $table->foreign("publisherID")->references('id')->on('publishers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign("genreID")->references('id')->on('genres')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

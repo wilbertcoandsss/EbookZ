@@ -35,7 +35,7 @@
                     </li>
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Mission</a>
+                            <a class="nav-link" href="/myMission">Mission</a>
                         </li>
                     @endauth
                 </ul>

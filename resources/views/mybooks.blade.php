@@ -40,7 +40,7 @@
         </div>
 
         <h1>Continue Reading</h1>
-        <div class="d-flex flex-row flex-wrap justify-content-between">
+        <div class="d-flex flex-row flex-wrap justify-content-start">
             @foreach ($readBooks as $b)
                 <div class="d-flex flex-column rounded-4 rec-book" style="font-family: 'Poppins', sans-serif;">
                     <a href="/readingBookPage/{{ $b->books->id }}">
@@ -66,7 +66,7 @@
         </div>
 
         <h1>Your Books</h1>
-        <div class="d-flex flex-row flex-wrap justify-content-between">
+        <div class="d-flex flex-row flex-wrap justify-content-start">
             @foreach ($userBooks as $b)
                 <div class="d-flex flex-column rounded-4 rec-book" style="font-family: 'Poppins', sans-serif;">
                     <a href="/readingBookPage/{{ $b->books->id }}">

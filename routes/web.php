@@ -49,3 +49,7 @@ Route::get('/transactionHistoryPage/{id}', [TransactionController::class, 'trans
 Route::get('/transactionDetailPage/{id}', [TransactionController::class, 'transactionDetailPage']);
 
 Route::get('/readingBookPage/{id}', [BookController::class, 'readingPage']);
+
+Route::get('/myMission', [PageController::class, 'goToMissionPage']);
+
+Route::post('/claimRewards/{id}/{bid}', [PageController::class, 'claimRewards']);
