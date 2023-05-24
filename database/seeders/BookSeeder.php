@@ -88,5 +88,41 @@ class BookSeeder extends Seeder
             'updated_at' => Carbon::now()
         ]);
 
+        Book::insert([
+            'bookName' => "Alice's Adventure in Wonderland",
+            'bookAuthor' => "Lewis Carroll",
+            'bookPrice' => 55000,
+            'bookStock' => 30,
+            'ISBN' => "978-048-627-543-7",
+            'bookDescription' => "Alice's Adventures in Wonderland is an 1865 English novel by Lewis Carroll, a mathematics professor at Oxford University. It details the story of a young girl named Alice who falls through a rabbit hole into a fantasy world of anthropomorphic creatures. It is seen as an example of the literary nonsense genre.",
+            'bookPublishDate' => Carbon::parse('1862-07-04'),
+            'bookPage' => 104,
+            'bookCover' => "Alice.jpg",
+            'bookPdf' => "Alice.pdf",
+            'publisherID' => 3,
+            'bookPoints' => 50000,
+            'genreID' => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        Book::insert([
+            'bookName' => "A Dangerous Business",
+            'bookAuthor' => "Jane Smiley",
+            'bookPrice' => 150000,
+            'bookStock' => 20,
+            'ISBN' => " 978-052-552-033-7",
+            'bookDescription' => "In 1850s Gold Rush California two young prostitutes, best friends Eliza and Jean, attempt to find their way in a lawless town on the fringes of the Wild West—a bewitching combination of beauty and danger—as what will become the Civil War looms on the horizon.
+            “Everyone knows that this is a dangerous business, but between you and me, being a woman is a dangerous business, and don’t let anyone tell you otherwise...",
+            'bookPublishDate' => Carbon::parse('2022-12-13'),
+            'bookPage' => 304,
+            'bookCover' => "Business.jpg",
+            'bookPdf' => "Business.pdf",
+            'publisherID' => 1,
+            'bookPoints' => 50000,
+            'genreID' => 2,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
     }
 }

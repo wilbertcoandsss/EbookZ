@@ -28,5 +28,12 @@ class PublisherSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+
+        Publisher::insert([
+            'publisherName' => "Macmillan",
+            'publisherEmail' => "macmillan@publishing.pub",
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
     }
 }

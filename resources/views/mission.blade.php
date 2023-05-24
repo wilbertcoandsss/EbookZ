@@ -5,6 +5,17 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/missions.css') }}">
 
+    @if (Session::has('message'))
+        <div class="alert"><img class="success-alert" src="{{ Storage::url('assets/success.png') }}">
+            <h3>{{ Session::get('message') }}</h3>
+        </div>
+    @endif
+
+    @if (Session::has('err'))
+        <div class="alert"><img class="success-alert" src="{{ Storage::url('assets/error.png') }}">
+            <h3>{{ Session::get('err') }}</h3>
+        </div>
+    @endif
 
     <div id="carouselExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -46,6 +57,8 @@
                 $m3sub2 = false;
                 $m3sub3 = false;
                 $mission1Done = false;
+                $mission2Done = false;
+                $mission3Done = false;
             @endphp
             @foreach ($missions as $m)
                 <div class="d-flex flex-column" style="background-color: white; width: 30%">
@@ -72,19 +85,30 @@
 
                     <h4 class="ms-4 me-4 fw-semibold mt-4 mb-4">Challenges</h4>
 
-
-                    @if ($m->id == 1)
-                        @if ($missionDone->first()->mission_id == $m->id)
+                    @foreach ($missionDone as $md)
+                        @if ($md->mission_id == 1)
                             @php
                                 $mission1Done = true;
                             @endphp
+                        @elseif ($md->mission_id == 2)
+                            @php
+                                $mission2Done = true;
+                            @endphp
+                        @elseif ($md->mission_id == 3)
+                            @php
+                                $mission3Done = true;
+                            @endphp
                         @endif
+                    @endforeach
+
+
+                    @if ($m->id == 1)
                         <h6 class="ms-4 me-4 fw-semibold mt-2 mb-2">{{ $m->subMission1 }}</h6>
 
                         @if (Str::contains($m->subMission1, 'Buy'))
                             <div class="progress ms-4 me-4">
                                 <div class="progress-bar" role="progressbar" aria-label="Example with label"
-                                    style="width: {{ $bookUserCount >= 1 ? '100%' : $bookUserCount * 11.11 . '%' }};"
+                                    style="background: #405969;  width: {{ $bookUserCount >= 1 ? '100%' : $bookUserCount * 11.11 . '%' }};"
                                     aria-valuenow="{{ $bookUserCount }}" aria-valuemin="0" aria-valuemax="1">
                                 </div>
                             </div>
@@ -100,7 +124,7 @@
                                         {{ $bookUserCount }}
                                     @endif
                                     /
-                                    5
+                                    1
                                 </h6>
                             </div>
                         @endif
@@ -111,7 +135,7 @@
                         @if (Str::contains($m->subMission2, 'Read any book for 1 minutes'))
                             <div class="progress ms-4 me-4">
                                 <div class="progress-bar" role="progressbar" aria-label="Example with label"
-                                    style="width: {{ Auth::user()->readTime >= 1 ? '100%' : Auth::user()->readTime * 11.11 . '%' }}; height: 20px;"
+                                    style="background: #405969; width: {{ Auth::user()->readTime >= 1 ? '100%' : Auth::user()->readTime * 100 . '%' }}; height: 20px;"
                                     aria-valuenow="{{ Auth::user()->readTime }}" aria-valuemin="0" aria-valuemax="1">
                                 </div>
                             </div>
@@ -122,11 +146,9 @@
                                             $fixedCount = 1;
                                             $m1sub2 = true;
                                         @endphp
-                                    @else
-                                        @php
-                                            $fixedCount = Auth::user()->readTime;
-                                        @endphp
                                         {{ $fixedCount }}
+                                    @else
+                                        {{ Auth::user()->readTime }}
                                     @endif
                                     /
                                     1
@@ -139,7 +161,7 @@
                         @if (Str::contains($m->subMission3, 'Read any book for 2 minutes'))
                             <div class="progress ms-4 me-4">
                                 <div class="progress-bar" role="progressbar" aria-label="Example with label"
-                                    style="width: {{ Auth::user()->readTime >= 2 ? '100%' : Auth::user()->readTime * 50 . '%' }}; height: 20px;"
+                                    style="background: #405969; width: {{ Auth::user()->readTime >= 2 ? '100%' : Auth::user()->readTime * 50 . '%' }}; height: 20px;"
                                     aria-valuenow="{{ Auth::user()->readTime }}" aria-valuemin="0" aria-valuemax="2">
                                 </div>
                             </div>
@@ -151,11 +173,9 @@
                                             $fixedCount = 2;
                                             $m1sub3 = true;
                                         @endphp
-                                    @else
-                                        @php
-                                            $fixedCount = Auth::user()->readTime;
-                                        @endphp
                                         {{ $fixedCount }}
+                                    @else
+                                        {{ Auth::user()->readTime }}
                                     @endif
                                     /
                                     2
@@ -165,19 +185,19 @@
                     @elseif ($m->id == 2)
                         <h6 class="ms-4 me-4 fw-semibold mt-2 mb-2">{{ $m->subMission1 }}</h6>
 
-                        @if (Str::contains($m->subMission1, 'Buy 5 books'))
+                        @if (Str::contains($m->subMission1, 'Buy 3 books'))
                             <div class="progress ms-4 me-4">
                                 <div class="progress-bar" role="progressbar" aria-label="Example with label"
-                                    style="width: {{ $bookUserCount >= 5 ? '100%' : $bookUserCount * 20 . '%' }};"
+                                    style="background: #405969; width: {{ $bookUserCount >= 3 ? '100%' : $bookUserCount * 33.33 . '%' }};"
                                     aria-valuenow="{{ $bookUserCount }}" aria-valuemin="0" aria-valuemax="5">
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-end me-4">
                                 <h6>
-                                    @if ($bookUserCount >= 5)
+                                    @if ($bookUserCount >= 3)
                                         @php
-                                            $fixedCount = 5;
+                                            $fixedCount = 3;
                                             $m2sub1 = true;
                                         @endphp
                                         {{ $fixedCount }}
@@ -185,7 +205,7 @@
                                         {{ $bookUserCount }}
                                     @endif
                                     /
-                                    5
+                                    3
                                 </h6>
                             </div>
                         @endif
@@ -193,19 +213,19 @@
 
                         <h6 class="ms-4 me-4 fw-semibold mt-2 mb-2">{{ $m->subMission2 }}</h6>
 
-                        @if (Str::contains($m->subMission2, 'Buy 8 books'))
+                        @if (Str::contains($m->subMission2, 'Buy 4 books'))
                             <div class="progress ms-4 me-4">
                                 <div class="progress-bar" role="progressbar" aria-label="Example with label"
-                                    style="width: {{ $bookUserCount >= 8 ? '100%' : $bookUserCount * 12.5 . '%' }};"
-                                    aria-valuenow="{{ $bookUserCount }}" aria-valuemin="0" aria-valuemax="8">
+                                    style="background: #405969; width: {{ $bookUserCount >= 4 ? '100%' : $bookUserCount * 25 . '%' }};"
+                                    aria-valuenow="{{ $bookUserCount }}" aria-valuemin="0" aria-valuemax="4">
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-end me-4">
                                 <h6>
-                                    @if ($bookUserCount >= 8)
+                                    @if ($bookUserCount >= 4)
                                         @php
-                                            $fixedCount = 8;
+                                            $fixedCount = 4;
                                             $m2sub2 = true;
                                         @endphp
                                         {{ $fixedCount }}
@@ -213,7 +233,7 @@
                                         {{ $bookUserCount }}
                                     @endif
                                     /
-                                    8
+                                    4
                                 </h6>
                             </div>
                         @endif
@@ -223,7 +243,7 @@
                         @if (Str::contains($m->subMission3, 'Read any book for 10 minutes'))
                             <div class="progress ms-4 me-4">
                                 <div class="progress-bar" role="progressbar" aria-label="Example with label"
-                                    style="width: {{ Auth::user()->readTime >= 10 ? '100%' : Auth::user()->readTime * 10 . '%' }}; height: 20px;"
+                                    style="background: #405969; width: {{ Auth::user()->readTime >= 10 ? '100%' : Auth::user()->readTime * 10 . '%' }}; height: 20px;"
                                     aria-valuenow="{{ Auth::user()->readTime }}" aria-valuemin="0" aria-valuemax="10">
                                 </div>
                             </div>
@@ -235,11 +255,9 @@
                                             $fixedCount = 10;
                                             $m2sub3 = true;
                                         @endphp
-                                    @else
-                                        @php
-                                            $fixedCount = Auth::user()->readTime;
-                                        @endphp
                                         {{ $fixedCount }}
+                                    @else
+                                        {{ Auth::user()->readTime }}
                                     @endif
                                     /
                                     10
@@ -252,7 +270,7 @@
                         @if (Str::contains($m->subMission1, 'Read any book for 5 minutes'))
                             <div class="progress ms-4 me-4">
                                 <div class="progress-bar" role="progressbar" aria-label="Example with label"
-                                    style="width: {{ Auth::user()->readTime >= 5 ? '100%' : Auth::user()->readTime * 20 . '%' }};"
+                                    style="background: #405969; width: {{ Auth::user()->readTime >= 5 ? '100%' : Auth::user()->readTime * 20 . '%' }};"
                                     aria-valuenow="{{ Auth::user()->readTime }}" aria-valuemin="0" aria-valuemax="5">
                                 </div>
                             </div>
@@ -280,7 +298,7 @@
                         @if (Str::contains($m->subMission2, 'Read any book for 15'))
                             <div class="progress ms-4 me-4">
                                 <div class="progress-bar" role="progressbar" aria-label="Example with label"
-                                    style="width: {{ Auth::user()->readTime >= 15 ? '100%' : Auth::user()->readTime * 12.5 . '%' }};"
+                                    style="background: #405969; width: {{ Auth::user()->readTime >= 15 ? '100%' : Auth::user()->readTime * 6.67 . '%' }};"
                                     aria-valuenow="{{ Auth::user()->readTime }}" aria-valuemin="0" aria-valuemax="15">
                                 </div>
                             </div>
@@ -307,7 +325,7 @@
                         @if (Str::contains($m->subMission3, 'Buy 3 books'))
                             <div class="progress ms-4 me-4">
                                 <div class="progress-bar" role="progressbar" aria-label="Example with label"
-                                    style="width: {{ $bookUserCount >= 3 ? '100%' : $bookUserCount * 33.33 . '%' }}; height: 20px;"
+                                    style="background: #405969; width: {{ $bookUserCount >= 3 ? '100%' : $bookUserCount * 33.33 . '%' }}; height: 20px;"
                                     aria-valuenow="{{ $bookUserCount }}" aria-valuemin="0" aria-valuemax="3">
                                 </div>
                             </div>
@@ -358,13 +376,15 @@
                             <button class="btn-disable" id="btn-1" disabled="true">Click to Claim</button>
                         </form>
                     @elseif ($m->id == 2)
-                        <form action="/claimRewards/{{ $m->id }}"
+                        <form action="/claimPoints/{{ $m->id }}" method="POST"
                             class="d-flex justify-content-center align-items-center mb-4">
+                            @csrf
                             <button class="btn-disable" id="btn-2" disabled="true">Click to Claim</button>
                         </form>
                     @elseif ($m->id == 3)
-                        <form action="/claimRewards/{{ $m->id }}"
+                        <form action="/claimRewards/{{ $m->id }}/{{ $books[1]->id }}" method="POST"
                             class="d-flex justify-content-center align-items-center mb-4">
+                            @csrf
                             <button class="btn-disable" id="btn-3" disabled="true">Click to Claim</button>
                         </form>
                     @endif
@@ -373,20 +393,52 @@
         </div>
         <br>
         <br>
+
+        <h1 class="ms-4">Point Shop</h1>
+        <div class="d-flex flex-row flex-wrap justify-content-start">
+            @foreach ($books as $b)
+                <div class="d-flex flex-column rounded-4 rec-book w-10"
+                    style="font-family: 'Poppins', sans-serif; width: 20%">
+                    <a href="/redeemPoints/{{ $b->id }}">
+                        <div class="d-flex justify-content-center mt-1 mb-3">
+                            <img class="book-pic-s" src="{{ Storage::url('books/' . $b->bookCover) }}">
+                        </div>
+                        <div class="text-center mb-3">
+                            <div class="title-box" style="font-size: 20px">
+                                {{ $b->bookName }}
+                            </div>
+                            <div class="author-box">
+                                {{ $b->bookAuthor }}
+                            </div>
+                            <br>
+                            <br>
+                            <div class="genre-box mb-3 mt-3">
+                                {{ $b->bookPoints }} points
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+        </div>
     </div>
+
+
+
+
 
     <script>
         var isClaim1 = {{ $m1claim ? 'true' : 'false' }};
         var isClaim2 = {{ $m2claim ? 'true' : 'false' }};
         var isClaim3 = {{ $m3claim ? 'true' : 'false' }};
 
-        var test1 = {{ $m3sub1 ? 'true' : 'false' }}
-        var test2 = {{ $m3sub2 ? 'true' : 'false' }}
-        var test3 = {{ $m3sub3 ? 'true' : 'false' }}
+        var test1 = {{ $m1sub1 ? 'true' : 'false' }}
+        var test2 = {{ $m1sub2 ? 'true' : 'false' }}
+        var test3 = {{ $m1sub3 ? 'true' : 'false' }}
 
         var mission1Done = {{ $mission1Done ? 'true' : 'false' }}
+        var mission2Done = {{ $mission2Done ? 'true' : 'false' }}
+        var mission3Done = {{ $mission3Done ? 'true' : 'false' }}
 
-        console.log("JAGA" + mission1Done);
 
         console.log(test1);
         console.log(test2);
@@ -412,6 +464,14 @@
         if (mission1Done) {
             document.getElementById("btn-1").disabled = true;
             document.getElementById("btn-1").className = "btn-disable";
+        }
+        if (mission2Done) {
+            document.getElementById("btn-2").disabled = true;
+            document.getElementById("btn-2").className = "btn-disable";
+        }
+        if (mission3Done) {
+            document.getElementById("btn-3").disabled = true;
+            document.getElementById("btn-3").className = "btn-disable";
         }
     </script>
 

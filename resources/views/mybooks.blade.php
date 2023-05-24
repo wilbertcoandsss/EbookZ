@@ -39,10 +39,10 @@
             </div>
         </div>
 
-        <h1>Continue Reading</h1>
+        <h1 class = "fw-semibold">Continue Reading</h1>
         <div class="d-flex flex-row flex-wrap justify-content-start">
             @foreach ($readBooks as $b)
-                <div class="d-flex flex-column rounded-4 rec-book" style="font-family: 'Poppins', sans-serif;">
+                <div class="d-flex flex-column rounded-4 rec-book" style="font-family: 'Poppins', sans-serif; width: 20%">
                     <a href="/readingBookPage/{{ $b->books->id }}">
                         <div class="d-flex justify-content-center mt-1 mb-3">
                             <img class="book-pic-s" src="{{ Storage::url('books/' . $b->books->bookCover) }}">
@@ -65,10 +65,10 @@
             @endforeach
         </div>
 
-        <h1>Your Books</h1>
+        <h1 class = "fw-semibold">Your Books ({{$bookUserCount}})</h1>
         <div class="d-flex flex-row flex-wrap justify-content-start">
             @foreach ($userBooks as $b)
-                <div class="d-flex flex-column rounded-4 rec-book" style="font-family: 'Poppins', sans-serif;">
+                <div class="d-flex flex-column rounded-4 rec-book w-10" style="font-family: 'Poppins', sans-serif; width: 20%">
                     <a href="/readingBookPage/{{ $b->books->id }}">
                         <div class="d-flex justify-content-center mt-1 mb-3">
                             <img class="book-pic-s" src="{{ Storage::url('books/' . $b->books->bookCover) }}">

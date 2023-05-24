@@ -28,8 +28,8 @@ class MissionSeeder extends Seeder
 
         Mission::insert([
             'missionName' => 'Richy Rich!',
-            'subMission1' => 'Buy 5 books!',
-            'subMission2' => 'Buy 8 books! ',
+            'subMission1' => 'Buy 3 books!',
+            'subMission2' => 'Buy 4 books! ',
             'subMission3' => 'Read any book for 10 minutes (accumulative)',
             'missionRewards' => 'Get a 50.000 points!',
             'winType' => 1,

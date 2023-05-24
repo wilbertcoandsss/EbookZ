@@ -43,16 +43,24 @@ class PageController extends Controller
 
         $books = Book::all();
         $amountBooks = Book::get()->count();
-        $randomBooksId = rand(1, $amountBooks);
-        $randomBooks = Book::find($randomBooksId);
+        $currentUserId = Auth::user()->id;
+        $randomBooks = Book::whereDoesntHave('inventory', function ($query) use ($currentUserId) {
+            $query->where('user_id', $currentUserId);
+        })->get();
+
+        $randomBooks = $randomBooks->pluck('id')->toArray();
+        $randomBookId = $randomBooks[array_rand($randomBooks)];
+
+        $randomBooksId = Book::find($randomBookId);
 
         $readBooks = Inventory::where('user_id', Auth::user()->id)->where('isBookOpen', 1)->get();
 
         $userBooks = Inventory::where('user_id', Auth::user()->id)->get();
 
 
+        $bookUserCount = Inventory::where('user_id', Auth::user()->id)->count();
 
-        return view('mybooks', ['randomBooks' => $randomBooks, 'books' => $books, 'userBooks' => $userBooks, 'readBooks' => $readBooks]);
+        return view('mybooks', ['randomBooks' => $randomBooksId, 'books' => $books, 'userBooks' => $userBooks, 'readBooks' => $readBooks, 'bookUserCount' => $bookUserCount]);
     }
 
     public function goToBooksDetail($id){
@@ -79,10 +87,7 @@ class PageController extends Controller
         $bookUserCount = Inventory::where('user_id', Auth::user()->id)->count();
 
         $missionUser = MissionUser::where('user_id', Auth::user()->id)->get();
-        // dd($books);
-        // foreach($books as $b){
-        //     dd($b->bookName);
-        // }
+
         return view ('mission', ['missions' => $missions, 'books' => $books, 'bookUserCount' => $bookUserCount, 'missionDone' => $missionUser]);
     }
 
@@ -105,7 +110,54 @@ class PageController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
-        return redirect('myMission');
+        return redirect('myMission')->with('message', 'Missions claimed succesfully');
     }
 
+    public function claimPoints($id){
+        $mission = Mission::find($id);
+
+        $currentPoints = Auth::user()->points;
+        $currentPoints = $currentPoints + 50000;
+
+        User::where('id', Auth::user()->id)->update([
+            'points' => $currentPoints
+        ]);
+
+        MissionUser::insert([
+            'user_id' => Auth::user()->id,
+            'mission_id' => $mission->id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        return redirect('myMission')->with('message', 'Missions claimed succesfully');
+    }
+
+    public function redeemPoints($id){
+        $book = Book::find($id);
+
+
+        if (Auth::user()->points < $book->bookPoints){
+            return redirect('/myMission')->with('err', 'Your points are not enough');
+        }
+        else{
+
+            $currentPoints = Auth::user()->points;
+            $deductedPoints = $currentPoints - $book->bookPoints;
+
+            User::where('id', Auth::user()->id)->update([
+                'points' => $deductedPoints
+            ]);
+
+            Inventory::insert([
+                'book_id' => $book->id,
+                'user_id' => Auth::user()->id,
+                'qty' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+
+        return redirect('/myMission')->with('message', 'Redeem success!');
+    }
 }

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600;700&display=swap');
 
+*{
+    font-family: 'Poppins';
+}
+
 .nav-bar {
     font-family: 'Poppins';
     font-weight: 600;
@@ -390,7 +394,7 @@ input::-webkit-inner-spin-button {
     margin-top: 10px;
     margin-bottom: 25px;
     background-color:#d5edda;
-    color: #2a6537; 
+    color: #2a6537;
     margin-left: auto;
     padding-top: 10px;
     padding-bottom: 10px;

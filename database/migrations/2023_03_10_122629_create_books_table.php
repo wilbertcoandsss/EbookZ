@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('bookCover');
             $table->string('bookPdf')->nullable();
             $table->boolean('isDiscount')->nullable();
-            $table->unsignedBigInteger('publisherID');
+            $table->unsignedBigInteger('publisherID')->nullable();
             $table->unsignedBigInteger('genreID');
             $table->boolean('isOpened')->nullable();
             $table->unsignedBigInteger('bookPoints');
