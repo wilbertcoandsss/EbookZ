@@ -18,6 +18,6 @@ class SliderSeeder extends Seeder
             'title' => 'Business',
             'pic' => 'Business.jpg',
             'desc' => 'Business Book'
-        ])
+        ]);
     }
 }
