@@ -57,3 +57,5 @@ Route::post('/claimRewards/{id}/{bid}', [PageController::class, 'claimRewards'])
 Route::post('/claimPoints/{id}', [PageController::class, 'claimPoints']);
 
 Route::get('/redeemPoints/{id}', [PageController::class, 'redeemPoints']);
+
+Route:: get('/addBook', [PageController::class, 'goToAddBookPage']);

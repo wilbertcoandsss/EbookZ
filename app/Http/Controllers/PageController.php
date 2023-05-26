@@ -76,6 +76,10 @@ class PageController extends Controller
         return view ('register');
     }
 
+    public function goToAddBookPage(){
+        return view('addBook');
+    }
+
     public function goToMissionPage(){
 
         $missions = Mission::all();
