@@ -76,8 +76,20 @@ class PageController extends Controller
         return view ('register');
     }
 
+    public function goToLibraryPage(){
+        return view('library');
+    }
+
     public function goToAddBookPage(){
         return view('addBook');
+    }
+
+    public function goToManageMyBook(){
+        return view('manageMyBook');
+    }
+
+    public function goToEditBook(){
+        return view('editBook');
     }
 
     public function goToMissionPage(){

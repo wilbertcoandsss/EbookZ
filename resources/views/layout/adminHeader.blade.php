@@ -82,7 +82,6 @@
             <li><a href="#">Logout</a></li>
         </ul>
     </div>
-
     @yield('content')
-    @extends('layout.footer')
 </body>
+</html>

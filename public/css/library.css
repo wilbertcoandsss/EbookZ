@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@600&display=swap');
+
+section{
+    padding: 20px 0px;
+    margin: 20px 0px;
+}
+
+.greyButton{
+    background-color: #405969;
+    border-radius: 10px;
+    color: whitesmoke;
+}
+
+.header1{
+    font-family: 'Playfair Display', serif;
+    font-size: 100px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.header2{
+    font-family: 'Playfair Display', serif;
+    font-size: 45px;
+    font-weight: 600;
+    text-align: left;
+    color: #405969;
+}
+
+.header3{
+    font-family: 'Playfair Display', serif;
+    font-size: 35;
+    font-weight: 600;
+    text-align: left;
+}
+
+.card-header{
+    font-family: 'Poppins', sans-serif;
+    font-size: 27px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.card-genre{
+    font-family: 'Poppins', sans-serif;
+    font-size: 18;
+    font-weight: 500;
+    text-align: left;
+    background-color: #C2c8cc;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.card-rating{
+    font-family: 'Poppins', sans-serif;
+    font-size: 18;
+    font-weight: 500;
+    text-align: left;
+    background-color: #F4D8A0;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.book-price{
+    font-family: 'Poppins', sans-serif;
+    font-size: 30;
+    font-weight: 700;
+    text-align: left;
+}
+
+.desc{
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.buttonText{
+    font-family: Poppins;
+    font-size: 21px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.dark-caption {
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background color */
+    color: white; /* Text color */
+    padding: 10px; /* Adjust padding as needed */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+  }

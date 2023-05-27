@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BookController::class, 'index']);
 
+Route::get('/library', [PageController::class, 'goToLibraryPage']);
+
 Route::get('/mybooks', [PageController::class, 'goToMyBooks']);
 
 Route::get('/bookDetail/{id}', [PageController::class, 'goToBooksDetail']);
@@ -58,4 +60,10 @@ Route::post('/claimPoints/{id}', [PageController::class, 'claimPoints']);
 
 Route::get('/redeemPoints/{id}', [PageController::class, 'redeemPoints']);
 
+// Admin View Routes
+
 Route:: get('/addBook', [PageController::class, 'goToAddBookPage']);
+
+Route:: get('/manageMyBook', [PageController::class, 'goToManageMyBook']);
+
+Route:: get('/editBook', [PageController::class, 'goToEditBook']);

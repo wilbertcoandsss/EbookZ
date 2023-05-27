@@ -3,7 +3,7 @@
 @section('title', 'Add Book')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/addBook.css') }}">
+<link rel="stylesheet" href="{{ asset('css/addBook.css') }}">
     <div class="content">
         <div class="searchProfile">
             <div class="searchBar">
