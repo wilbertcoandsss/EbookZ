@@ -31,7 +31,7 @@
                         </li>
                     @endauth
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Library</a>
+                        <a class="nav-link" href="/library">Library</a>
                     </li>
                     @auth
                         <li class="nav-item">
