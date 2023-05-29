@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Inventory;
 use App\Models\TransactionDetail;
 use App\Models\TransactionHeader;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,6 +95,9 @@ class CartController extends Controller
             );
         }
 
+        $bookId = $books->first()->book_id;
+        $bookPrice = Book::find($bookId)->bookPrice;
+
         $getLatestData = TransactionHeader::latest()->first();
 
         for ($i = 0; $i < $count; $i++) {
@@ -120,6 +124,13 @@ class CartController extends Controller
             } else {
             }
         }
+        $currentPoints = Auth::user()->points;
+
+        $nowPoints = $currentPoints + ($bookPrice * 35 / 100);
+
+        User::where('id', Auth::user()->id)->update([
+            'points' => $nowPoints
+        ]);
 
         Cart::where('user_id', $id)->truncate();
         session(['cartCounter' => 0]);

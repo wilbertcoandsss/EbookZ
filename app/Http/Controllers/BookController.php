@@ -39,11 +39,15 @@ class BookController extends Controller
 
         $session = app('session');
         $session->put('cartCounter', $cartCount);
-        $books = Book::limit(4)->get();
-        $recBooks = Book::limit(3)->get();
-        $discBooks = Book::where('isDiscount', '=', '1')->get();
-        // dd($discBooks);
-        return view('home', ['books' => $books, 'recBooks' => $recBooks, 'discBooks' => $discBooks, 'cartCount' => $cartCount]);
+
+        $bookPopular = Book::inRandomOrder()->limit(4)->get();
+        $bestSeller = Book::inRandomOrder()->limit(4)->get();
+        $bookSales = Book::where('isDiscount', 1)->limit(4)->get();
+
+        $books = Book::inRandomOrder()->limit(4)->get();
+
+
+        return view('home', ['bookPopular' => $bookPopular, 'bestSeller' => $bestSeller, 'bookSales' => $bookSales, 'books' => $books, 'cartCount' => $cartCount]);
     }
 
     public function insert(Request $req){

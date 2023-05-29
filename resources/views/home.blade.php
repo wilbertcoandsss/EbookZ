@@ -117,12 +117,10 @@
         </div>
     </div>
 
-    {{-- <iframe src="{{Storage::url('pdf/Bumi.pdf')}}" align="top" height="620" width="100%" frameborder="0" scrolling="auto"></iframe> --}}
-
     <div class="d-flex flex-column mt-5 mb-5 p-5 ms-5 me-5">
         <div class="d-flex w-100 justify-content-between">
             <div>
-                <h2>Best Sellers</h2>
+                <h2 class="fw-bold">Best Sellers</h2>
             </div>
             <div>
                 <a href="">
@@ -139,7 +137,7 @@
                         <div class="d-flex justify-content-center mt-1 mb-3">
                             <img class="book-pic" src="{{ Storage::url('books/' . $b->bookCover) }}">
                         </div>
-                        <div class="text-start mb-2">
+                        <div class="text-start mb-2 ms-3">
                             <div class="genre-box mb-3 mt-3 text-center">
                                 {{ $b->genre->genreName }}
                             </div>
@@ -206,7 +204,7 @@
     <div class="d-flex flex-column mt-5 mb-5 p-5 ms-5 me-5">
         <div class="d-flex w-100 justify-content-between">
             <div>
-                <h2>Books on Sale!</h2>
+                <h2 class = "fw-bold">Books on Sale!</h2>
             </div>
             <div>
                 <a href="">
@@ -218,14 +216,14 @@
             @foreach ($books as $b)
                 <div class="d-flex flex-column rounded-4 rec-book w-100 ms-3 me-3"
                     style="font-family: 'Poppins', sans-serif;">
-                    <a class="d-flex  position-relative flex-row w-100 justify-content-around" href="">
+                    <a class="d-flex  position-relative flex-row w-100 justify-content-around" href="/bookDetail/{{$b->id}}">
                         <div class="sale-div position-absolute badge bg-warning text-dark p-2 m-3">
                             Sale!
                         </div>
                         <div class="d-flex justify-content-center mt-1 mb-3">
                             <img class="book-pic" src="{{ Storage::url('books/' . $b->bookCover) }}">
                         </div>
-                        <div class="text-start mb-2">
+                        <div class="text-start mb-2 ms-3">
                             <div class="genre-box mb-3 mt-3 text-center">
                                 {{ $b->genre->genreName }}
                             </div>

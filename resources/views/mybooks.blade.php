@@ -65,7 +65,11 @@
             @endforeach
         </div>
 
-        <h1 class = "fw-semibold">Your Books ({{$bookUserCount}})</h1>
+        @if ($bookUserCount == 0)
+            <h1 class = "fw-semibold">Your Books</h1>
+        @else
+            <h1 class = "fw-semibold">Your Books ({{$bookUserCount}})</h1>
+        @endif
         <div class="d-flex flex-row flex-wrap justify-content-start">
             @foreach ($userBooks as $b)
                 <div class="d-flex flex-column rounded-4 rec-book w-10" style="font-family: 'Poppins', sans-serif; width: 20%">

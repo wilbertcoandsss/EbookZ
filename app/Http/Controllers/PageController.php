@@ -109,7 +109,7 @@ class PageController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
-
+    
         return redirect('myMission')->with('message', 'Missions claimed succesfully');
     }
 
