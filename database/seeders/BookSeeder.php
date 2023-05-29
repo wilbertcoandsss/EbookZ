@@ -124,5 +124,59 @@ class BookSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+
+        Book::insert([
+            'bookName' => "The Stranger",
+            'bookAuthor' => "Albert Camus",
+            'bookPrice' => 80000,
+            'bookStock' => 30,
+            'ISBN' => " 978-067-972-020-1",
+            'bookDescription' => "Published in 1942 by French author Albert Camus, The Stranger has long been considered a classic of twentieth-century literature. Le Monde ranks it as number one on its 100 Books of the Century list. Through this story of an ordinary man unwittingly drawn into a senseless murder on a sundrenched Algerian beach, Camus explores what he termed the nakedness of man faced with the absurd.",
+            'bookPublishDate' => Carbon::parse('1942-05-19'),
+            'bookPage' => 159,
+            'bookCover' => "TheStranger.jpg",
+            'bookPdf' => "TheStranger.pdf",
+            'publisherID' => 4,
+            'bookPoints' => 75000,
+            'genreID' => 6,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        Book::insert([
+            'bookName' => "The Plague",
+            'bookAuthor' => "Albert Camus",
+            'bookPrice' => 100000,
+            'bookStock' => 30,
+            'ISBN' => " 978-067-972-021-8",
+            'bookDescription' => "The Plague is a novel about a plague epidemic in the large Algerian city of Oran. In April, thousands of rats stagger into the open and die. When a mild hysteria grips the population, the newspapers begin clamoring for action. The authorities finally arrange for the daily collection and cremation of the rats.",
+            'bookPublishDate' => Carbon::parse('1947-06-10'),
+            'bookPage' => 308,
+            'bookCover' => "ThePlague.jpg",
+            'bookPdf' => "TheStranger.pdf",
+            'publisherID' => 4,
+            'bookPoints' => 80000,
+            'genreID' => 6,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        Book::insert([
+            'bookName' => "Ready Player One",
+            'bookAuthor' => "Ernest Cline",
+            'bookPrice' => 150000,
+            'bookStock' => 30,
+            'ISBN' => " 978-030-788-743-6",
+            'bookDescription' => "Ready Player One is a 2011 science fiction novel, and the debut novel of American author Ernest Cline. The story, set in a dystopia in 2045, follows protagonist Wade Watts on his search for an Easter egg in a worldwide virtual reality game, the discovery of which would lead him to inherit the game creator's fortune.",
+            'bookPublishDate' => Carbon::parse('2011-08-11'),
+            'bookPage' => 310,
+            'bookCover' => "ReadyPlayerOne.jpg",
+            'bookPdf' => "ReadyPlayerOne.pdf",
+            'publisherID' => 1,
+            'bookPoints' => 100000,
+            'genreID' => 5,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
     }
 }
