@@ -25,11 +25,11 @@
                     alt="...">
             </div>
             <div class="carousel-item">
-                <img width="1300px" height="400px" src="{{ Storage::url('books/Charlie.jpg') }}" class="d-block w-100"
+                <img width="1300px" height="400px" src="{{ Storage::url('assets/Headline2.png') }}" class="d-block w-100"
                     alt="...">
             </div>
             <div class="carousel-item">
-                <img width="1300px" height="400px" src="{{ Storage::url('books/Business.jpg') }}" class="d-block w-100"
+                <img width="1300px" height="400px" src="{{ Storage::url('assets/Headline3.png') }}" class="d-block w-100"
                     alt="...">
             </div>
         </div>
@@ -88,7 +88,7 @@
             <h4 style="font-family: 'Poppins'; font-weight: 600; font-size: 18px;">Here is the most popular novel back in 2023!
             </h4>
             <div class="d-flex flex-row">
-                @foreach ($books as $b)
+                @foreach ($bookPopular as $b)
                     <div class="d-flex flex-column rounded-4 rec-book w-100" style="font-family: 'Poppins', sans-serif;">
                         <a href="/bookDetail/{{$b->id}}">
                             <div class="d-flex justify-content-center mt-1 mb-3">
@@ -130,7 +130,7 @@
         </div>
 
         <div class="d-flex flex-row">
-            @foreach ($books as $b)
+            @foreach ($bestSeller as $b)
                 <div class="d-flex flex-column rounded-4 rec-book w-100 ms-3 me-3"
                     style="font-family: 'Poppins', sans-serif;">
                     <a class="d-flex flex-row w-100 justify-content-around" href="/bookDetail/{{$b->id}}">
@@ -213,7 +213,7 @@
             </div>
         </div>
         <div class="d-flex flex-row">
-            @foreach ($books as $b)
+            @foreach ($bookSales as $b)
                 <div class="d-flex flex-column rounded-4 rec-book w-100 ms-3 me-3"
                     style="font-family: 'Poppins', sans-serif;">
                     <a class="d-flex  position-relative flex-row w-100 justify-content-around" href="/bookDetail/{{$b->id}}">

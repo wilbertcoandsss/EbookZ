@@ -29,13 +29,17 @@ class BookController extends Controller
             }
 
             if ($mostCommonGenre){
-                // dd($mostCommonGenre->genreName);
+                $genre_id = Genre::where('genreName', $mostCommonGenre->genreName)->first();
+                // $books = Book::where('genreID', $genre_id->id)->limit(4)->get();
+            }
+            else{
+                // $books = Book::inRandomOrder()->limit(4)->get();
             }
         }
         else{
             $cartCount = 0;
         }
-
+        $books = Book::inRandomOrder()->limit(4)->get();
 
         $session = app('session');
         $session->put('cartCounter', $cartCount);
@@ -44,7 +48,6 @@ class BookController extends Controller
         $bestSeller = Book::inRandomOrder()->limit(4)->get();
         $bookSales = Book::where('isDiscount', 1)->limit(4)->get();
 
-        $books = Book::inRandomOrder()->limit(4)->get();
 
 
         return view('home', ['bookPopular' => $bookPopular, 'bestSeller' => $bestSeller, 'bookSales' => $bookSales, 'books' => $books, 'cartCount' => $cartCount]);

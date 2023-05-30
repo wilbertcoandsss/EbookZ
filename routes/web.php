@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BookController::class, 'index']);
 
-Route::get('/mybooks', [PageController::class, 'goToMyBooks']);
+Route::get('/mybooks', [PageController::class, 'goToMyBooks'])->middleware('isLogged');
 
 Route::get('/bookDetail/{id}', [PageController::class, 'goToBooksDetail']);
 
