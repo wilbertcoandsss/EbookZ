@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TransactionHeader;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -63,7 +64,12 @@ class AuthController extends Controller
         }
 
         if(Auth::attempt($credentials)){
-            return redirect('/');
+            if (Auth::user()->role == 'admin'){
+                return redirect('adminpage');
+            }
+            else{
+                return redirect('/');
+            }
         }
 
         return back()->withErrors([

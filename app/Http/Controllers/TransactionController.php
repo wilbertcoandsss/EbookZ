@@ -30,4 +30,20 @@ class TransactionController extends Controller
 
         return view('transactiondetail', ['trdetail' => $trDetail, 'thdetail' => $thDetail]);
     }
+
+    public function transactionDetailPageAdmin($id)
+    {
+        $trDetail = TransactionDetail::where('transaction_header_id', $id)->get();
+        $count = TransactionDetail::where('transaction_header_id', $id)->count();
+        $thDetail = TransactionHeader::find($id);
+
+        $subTotal[] = 0;
+        $totalPrice = 0;
+
+        $myCartItem = TransactionHeader::find($id);
+
+        $Price = [];
+
+        return view('transactiondetailadmin', ['trdetail' => $trDetail, 'thdetail' => $thDetail]);
+    }
 }

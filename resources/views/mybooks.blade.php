@@ -43,7 +43,7 @@
         <div class="d-flex flex-row flex-wrap justify-content-start">
             @foreach ($readBooks as $b)
                 <div class="d-flex flex-column rounded-4 rec-book" style="font-family: 'Poppins', sans-serif; width: 20%">
-                    <a href="/readingBookPage/{{ $b->books->id }}">
+                    <a href="/beforeReadPage/{{ $b->books->id }}">
                         <div class="d-flex justify-content-center mt-1 mb-3">
                             <img class="book-pic-s" src="{{ Storage::url('books/' . $b->books->bookCover) }}">
                         </div>
@@ -73,7 +73,7 @@
         <div class="d-flex flex-row flex-wrap justify-content-start">
             @foreach ($userBooks as $b)
                 <div class="d-flex flex-column rounded-4 rec-book w-10" style="font-family: 'Poppins', sans-serif; width: 20%">
-                    <a href="/readingBookPage/{{ $b->books->id }}">
+                    <a href="/beforeReadPage/{{ $b->books->id }}">
                         <div class="d-flex justify-content-center mt-1 mb-3">
                             <img class="book-pic-s" src="{{ Storage::url('books/' . $b->books->bookCover) }}">
                         </div>

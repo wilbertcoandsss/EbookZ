@@ -12,6 +12,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class PageController extends Controller
 {
@@ -76,9 +78,31 @@ class PageController extends Controller
         return view('login');
     }
 
+    public function goToAdminPage()
+    {
+        return view('adminpage');
+    }
+
     public function goToRegisterPage()
     {
         return view('register');
+    }
+
+    public function goToManageBookPage(){
+        $book = Book::all();
+        return view('managebook', ['books' => $book]);
+    }
+
+    public function goToDashboardPage(){
+        $transaction = TransactionHeader::all();
+        $result = DB::table('transaction_details as td')
+        ->join('books as b', 'td.book_id', '=', 'b.id')
+        ->select(DB::raw('SUM(td.qty * b.bookPrice) as total'))
+        ->first();
+
+        $total = $result->total;
+
+        return view ('dashboard', ['transaction' => $transaction, 'total' => $total]);
     }
 
     public function goToMissionPage()
@@ -167,5 +191,24 @@ class PageController extends Controller
         }
 
         return redirect('/myMission')->with('message', 'Redeem success!');
+    }
+
+    public function beforeReadPage($id){
+        $book = Book::find($id);
+        return view('beforeread', ['book' => $book]);
+    }
+
+    public function verifyPw(Request $req, $bid){
+        $pw = $req->password;
+        $book = Book::find($bid);
+        $user = User::find(Auth::user()->id);
+
+        if(Hash::check($pw, $user->password)){
+            return redirect()->route('readingBookPage', ['id' => $book->id]);
+        }
+
+        else{
+            return redirect()->back()->with('message', 'Password didnt match!');
+        }
     }
 }

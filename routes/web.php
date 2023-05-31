@@ -48,7 +48,9 @@ Route::get('/transactionHistoryPage/{id}', [TransactionController::class, 'trans
 
 Route::get('/transactionDetailPage/{id}', [TransactionController::class, 'transactionDetailPage']);
 
-Route::get('/readingBookPage/{id}', [BookController::class, 'readingPage']);
+Route::get('/transactionDetailPageAdmin/{id}', [TransactionController::class, 'transactionDetailPageAdmin']);
+
+Route::get('/readingBookPage/{id}', [BookController::class, 'readingPage'])->name('readingBookPage');
 
 Route::get('/myMission', [PageController::class, 'goToMissionPage']);
 
@@ -57,3 +59,13 @@ Route::post('/claimRewards/{id}/{bid}', [PageController::class, 'claimRewards'])
 Route::post('/claimPoints/{id}', [PageController::class, 'claimPoints']);
 
 Route::get('/redeemPoints/{id}', [PageController::class, 'redeemPoints']);
+
+Route::get('beforeReadPage/{id}', [PageController::class, 'beforeReadPage']);
+
+Route::post('/verifyPw/{bid}', [PageController::class, 'verifyPw']);
+
+Route::get('/adminpage', [PageController::class, 'goToAdminPage']);
+
+Route::get('/dashboard', [PageController::class, 'goToDashboardPage']);
+
+Route::get('/manageBook', [PageController::class, 'goToManageBookPage']);

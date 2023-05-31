@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function mission(){
         return $this->hasMany(Mission::class, 'id');
     }
+
+    public function transactions(){
+        return $this->hasMany(TransactionHeader::class, 'id');
+    }
 }
