@@ -69,3 +69,17 @@ Route::get('/adminpage', [PageController::class, 'goToAdminPage']);
 Route::get('/dashboard', [PageController::class, 'goToDashboardPage']);
 
 Route::get('/manageBook', [PageController::class, 'goToManageBookPage']);
+
+Route::get('/addBookPage', [PageController::class, 'goToAddBookPage']);
+
+Route::post('/addBook', [BookController::class, 'addBook']);
+
+Route::get('/editBookPage', [PageController::class, 'goToEditBookPage']);
+
+Route::post('/deleteBook/{id}', [BookController::class, 'deleteBook']);
+
+Route::get('/updateBookDetail/{id}', [PageController::class, 'goToUpdateBookDetailPage']);
+
+Route::post('/updateBook/{id}', [BookController::class, 'updateBook']);
+
+Route::post('/search', [BookController::class, 'searchBook']);

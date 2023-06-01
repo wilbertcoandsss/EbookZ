@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Genre;
 use App\Models\Inventory;
 use App\Models\Mission;
 use App\Models\MissionUser;
+use App\Models\Publisher;
 use App\Models\TransactionDetail;
 use App\Models\TransactionHeader;
 use App\Models\User;
@@ -91,6 +93,25 @@ class PageController extends Controller
     public function goToManageBookPage(){
         $book = Book::all();
         return view('managebook', ['books' => $book]);
+    }
+
+    public function goToEditBookPage(){
+        $book = Book::all();
+        return view('editbook', ['books' => $book]);
+    }
+
+    public function goToAddBookPage(){
+        // $book = Book::all();
+        $publisher = Publisher::all();
+        $genre = Genre::all();
+        return view('addbook', ['publisher' => $publisher, 'genre' => $genre]);
+    }
+
+    public function goToUpdateBookDetailPage($id){
+        $books = Book::find($id);
+        $publisher = Publisher::all();
+        $genre = Genre::all();
+        return view ('updatebookdetail', ['books' => $books, 'publisher' => $publisher, 'genre' => $genre]);
     }
 
     public function goToDashboardPage(){
