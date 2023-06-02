@@ -64,6 +64,8 @@ Route::get('beforeReadPage/{id}', [PageController::class, 'beforeReadPage']);
 
 Route::post('/verifyPw/{bid}', [PageController::class, 'verifyPw']);
 
+Route::post('/verifySubs', [PageController::class, 'verifySubs']);
+
 Route::get('/adminpage', [PageController::class, 'goToAdminPage']);
 
 Route::get('/dashboard', [PageController::class, 'goToDashboardPage']);
@@ -95,3 +97,9 @@ Route::get('/profileCustomer', [PageController::class, 'goToProfileCustomerPage'
 Route::post('/updateProfileAdmin/{id}', [AuthController::class, 'updateProfileAdmin']);
 
 Route::post('/updateAccountAdmin/{id}', [AuthController::class, 'updateAccountAdmin']);
+
+Route::get('/confirmSubscribe', [PageController::class, 'goToConfSubPage']);
+
+Route::get('/library', [PageController::class, 'goToLibrary']);
+
+Route::post('/filterData/{id}', [BookController::class, 'filterBook']);

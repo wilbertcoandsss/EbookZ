@@ -182,60 +182,71 @@
                             @enderror
                         </div>
                     </div>
-                </div>
 
-                <hr id="myhr" style="display: none">
-                <div class="d-flex flex-column">
-                    <div class="details-box flex-row align-items-center" id="new-publisher-form" style="display: none">
-                        <h4>Book Publisher</h4>
 
-                        {{-- <h6>{{ $b->bookAuthor }}</h6> --}}
-                        <input type="text" name="new_publisher" id="">
+                    <hr id="myhr" style="display: none">
+                    <div class="d-flex flex-column">
+                        <div class="details-box flex-row align-items-center" id="new-publisher-form"
+                            style="display: none">
+                            <h4>Book Publisher</h4>
+
+                            {{-- <h6>{{ $b->bookAuthor }}</h6> --}}
+                            <input type="text" name="new_publisher" id="">
+                        </div>
                     </div>
-                </div>
 
-                <hr>
-                <div class="d-flex flex-column">
-                    <div class="details-box d-flex flex-row align-items-center" oninput="genreValidation()">
+                    <hr>
+                    <div class="d-flex flex-column">
+                        <div class="details-box d-flex flex-row align-items-center" oninput="genreValidation()">
+                            <h4>Book Genre</h4>
+                            <select id="genre" name="genre">
+                                @foreach ($genre as $g)
+                                    <option value={{ $g->genreName }}>{{ $g->genreName }}</option>
+                                @endforeach
+                                <option value="newgenre">Add New Genre</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="error-msg">
+                            @error('new_genre')
+                                <strong class="error-msg">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <hr id="myhr1" style="display: none">
+                    <div class="details-box flex-row align-items-center" id="new-genre-form" style="display: none">
                         <h4>Book Genre</h4>
-                        <select id="genre" name="genre">
-                            @foreach ($genre as $g)
-                                <option value={{ $g->genreName }}>{{ $g->genreName }}</option>
-                            @endforeach
-                            <option value="newgenre">Add New Genre</option>
-                        </select>
+                        <input type="text" name="new_genre" id="">
                     </div>
-                    <br>
-                    <div class="error-msg">
-                        @error('new_genre')
-                            <strong class="error-msg">{{ $message }}</strong>
-                        @enderror
-                    </div>
-                </div>
 
-                <hr id="myhr1" style="display: none">
-                <div class="details-box flex-row align-items-center" id="new-genre-form" style="display: none">
-                    <h4>Book Genre</h4>
-                    <input type="text" name="new_genre" id="">
-                </div>
-
-                <hr>
-                <div class="d-flex flex-column">
-                    <div class="details-box d-flex flex-row align-items-center">
-                        <h4>Book Points</h4>
-                        {{-- <h6>{{ $b->bookAuthor }}</h6> --}}
-                        <input type="number" name="points" id="" placeholder="{{ $books->bookPoints }}">
-                    </div>
-                    <br>
-                    <div class="error-msg">
-                        @error('points')
-                            <strong class="error-msg">{{ $message }}</strong>
-                        @enderror
+                    <hr>
+                    <div class="d-flex flex-column">
+                        <div class="details-box d-flex flex-row align-items-center">
+                            <h4>Book Points</h4>
+                            {{-- <h6>{{ $b->bookAuthor }}</h6> --}}
+                            <input type="number" name="points" id="" placeholder="{{ $books->bookPoints }}">
+                        </div>
+                        <br>
+                        <div class="error-msg">
+                            @error('points')
+                                <strong class="error-msg">{{ $message }}</strong>
+                            @enderror
+                        </div>
                     </div>
                     <hr>
+                    <div class="d-flex flex-column">
+                        <div class="details-box d-flex flex-row align-items-center" >
+                            <h4>Book Discount</h4>
+                            <select id="discount" name="discount">
+                                <option value="nodisc">No</option>
+                                <option value="yesdisc">Yes</option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
                     <input type="submit">
                 </div>
-        </div>
         </div>
         </form>
         </div>

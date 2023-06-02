@@ -33,6 +33,7 @@
                     <th>Book Name</th>
                     <th>Book Price</th>
                     <th>Publish Date</th>
+                    <th>Discount</th>
                 </thead>
                 <tbody>
                     @foreach ($books as $b)
@@ -41,6 +42,13 @@
                             <td>{{ $b->bookName }}</td>
                             <td>Rp. {{ $b->bookPrice }}</td>
                             <td>{{ $b->bookPublishDate }}</td>
+                            <td>
+                                @if($b->isDiscount == 1)
+                                    Discount
+                                @else
+                                    Normal
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

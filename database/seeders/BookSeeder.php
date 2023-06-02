@@ -67,7 +67,7 @@ class BookSeeder extends Seeder
             'isDiscount' => TRUE,
             'publisherID' => 2,
             'bookPoints' => 45000,
-            'genreID' => 1,
+            'genreID' => 4,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
@@ -139,7 +139,7 @@ class BookSeeder extends Seeder
             'bookPage' => 308,
             'bookCover' => "ThePlague.jpg",
             'bookPdf' => "TheStranger.pdf",
-            'publisherID' => 4,
+            'publisherID' => 3,
             'isDiscount' => 1,
             'bookPoints' => 80000,
             'genreID' => 6,
@@ -161,7 +161,7 @@ class BookSeeder extends Seeder
             'isDiscount' => TRUE,
             'publisherID' => 2,
             'bookPoints' => 50000,
-            'genreID' => 1,
+            'genreID' => 3,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
@@ -197,7 +197,7 @@ class BookSeeder extends Seeder
             'bookPdf' => "ThisTimeTomorrow.pdf",
             'publisherID' => 1,
             'bookPoints' => 90000,
-            'genreID' => 7,
+            'genreID' => 6,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
@@ -216,7 +216,7 @@ class BookSeeder extends Seeder
             'bookPdf' => "Alice.pdf",
             'publisherID' => 3,
             'bookPoints' => 50000,
-            'genreID' => 1,
+            'genreID' => 7,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

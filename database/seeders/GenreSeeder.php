@@ -46,7 +46,7 @@ class GenreSeeder extends Seeder
         ]);
 
         Genre::insert([
-            'genreName' => "Philosophy",
+            'genreName' => "Thriller",
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

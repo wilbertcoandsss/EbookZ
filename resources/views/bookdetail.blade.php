@@ -30,7 +30,7 @@
                         <form action="/addToCart/{{ $b->id }}" method="POST">
                             <div class="d-flex flex-row justify-content-between" style="width: 230px">
                                 <div class="qtyOuter">
-                                    <button type="button"  class="qtyBtn" onclick="decreaseQty()">-</button>
+                                    <button type="button" class="qtyBtn" onclick="decreaseQty()">-</button>
                                     <input type="number" id="qtyInput" name="qty" value="1" readonly>
                                     <button type="button" class="qtyBtn" onclick="increaseQty()">+</button>
                                 </div>
@@ -41,6 +41,16 @@
                             </div>
                         </form>
                     </div>
+                    <br>
+                    @if (Auth::user() && Auth::user()->isSubscribe)
+                        <div>
+                            <form action="/beforeReadPage/{{ $b->id }}" method="GET">
+                                <button type="submit" class="read-now-btn">Read Now [Exclusive]</button>
+                            </form>
+                        </div>
+                    @else
+
+                    @endif
                 </div>
             </div>
             <div style="margin-top: 40px;"></div>

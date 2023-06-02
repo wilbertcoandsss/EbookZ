@@ -23,6 +23,9 @@ return new class extends Migration
             $table->double('readTime')->default(0);
             $table->unsignedInteger('points')->default(0);
             $table->unsignedBigInteger('recentOpenedBook')->nullable();
+            $table->boolean('isSubscribe')->default(false);
+            $table->date('subscribeStart')->nullable();
+            $table->date('subscribeEnd')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

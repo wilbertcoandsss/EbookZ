@@ -31,7 +31,7 @@
                         </li>
                     @endauth
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Library</a>
+                        <a class="nav-link" href="/library">Library</a>
                     </li>
                     @auth
                         <li class="nav-item">
@@ -40,21 +40,27 @@
                     @endauth
                 </ul>
                 <ul class="navbar-nav d-flex justify-content-around w-100">
-                    <form class="form-inline my-2 my-lg-0 m-auto search-bar">
+                    <form class="form-inline my-2 my-lg-0 m-auto search-bar" action="/search" method="POST">
                         @csrf
                         <button class="search-submit" type="submit"><img class="search-logo"
                                 src="{{ Storage::url('/assets/search.png') }}"></button>
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" name = "search">
                     </form>
                 </ul>
                 <ul class="navbar-nav d-flex justify-content-around w-100">
                     @auth
-                    @php
-                        $cartCount = request()->session()->get('cartCounter', '');
-                    @endphp
+                        @php
+                            $cartCount = request()
+                                ->session()
+                                ->get('cartCounter', '');
+                        @endphp
                         <li class="d-flex nav-link align-items-center justify-content-center">
-                            <a class = "d-flex align-items-center justify-content-center" style = "text-decoration:none"href = "/cartPage/{{Auth::user()->id}}"><img src="{{ Storage::url('/assets/cart].png') }}" width="45px" height="45px" style="align-items: center">
-                                <span style = "position: absolute; background-color: #405969; border-radius: 15px; margin-left: 35px; margin-top: -15px; z-index: 1"class="badge">{{$cartCount}}</span>
+                            <a class="d-flex align-items-center justify-content-center" style="text-decoration:none"
+                                href="/cartPage/{{ Auth::user()->id }}"><img src="{{ Storage::url('/assets/cart].png') }}"
+                                    width="45px" height="45px" style="align-items: center">
+                                <span
+                                    style="position: absolute; background-color: #405969; border-radius: 15px; margin-left: 35px; margin-top: -15px; z-index: 1"
+                                    class="badge">{{ $cartCount }}</span>
                             </a>
                         </li>
                         <div class="auth-container">
@@ -73,6 +79,11 @@
                                 <div class="dropdown-content">
                                     <div class="greetings">
                                         Hi, <strong>{{ Auth::user()->name }}</strong>
+                                        <br>
+                                        @if (Auth::user()->isSubscribe == true)
+                                            <img class="mt-2 mb-2" src="{{ Storage::url('assets/exclusive.png') }}"
+                                                width="185px" height="40px">
+                                        @endif
                                     </div>
                                     <hr class="line">
                                     <a href="/profileCustomer">Your Profile</a>

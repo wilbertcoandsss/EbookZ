@@ -11,7 +11,12 @@
         <link rel="stylesheet" href="{{ asset('css/details.css') }}">
         <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
-
+        @php
+            use Carbon\Carbon;
+            $subscribeStart = \Carbon\Carbon::now();
+            $subscribeEnd = \Carbon\Carbon::parse(Auth::user()->subscribeEnd);
+            $daysDifference = $subscribeStart->diffInDays($subscribeEnd);
+        @endphp
         @if (Session::has('message'))
             <div class="alert"><img class="success-alert" src="{{ Storage::url('assets/success.png') }}">
                 <h3>{{ Session::get('message') }}</h3>
@@ -21,40 +26,47 @@
         <div class="d-flex align-items-center justify-content-around ms-5 mt-3 me-5 pt-3 pb-3 mb-5"
             style="background-color: white; border-radius:15px">
             <div class="d-flex flex-column" style="font-size: 22px">
-                <h1>Hi, {{ Auth::user()->name }}</h1>
+                <h1 class="fw-semibold">Hi, {{ Auth::user()->name }}</h1>
+                @if (Auth::user()->isSubscribe == true)
+                    <img class="mt-2 mb-2" src="{{ Storage::url('assets/exclusive.png') }}" width="185px" height="40px">
+                    <h4 class="fw-semibold">Active from :
+                        {{ DateTime::createFromFormat('Y-m-d', Auth::user()->subscribeStart)->format('d F Y') }}</h4>
+                    <h4 class="fw-semibold">End subscription:
+                        {{ DateTime::createFromFormat('Y-m-d', Auth::user()->subscribeEnd)->format('d F Y') }}</h4>
+                    <h4 class="fw-semibold">{{$daysDifference}} day(s) left</h4>
+                @endif
                 <div class="d-flex flex-row align-items-center">
-                    <img src="{{ Storage::url('assets/date.png') }}"
-                        class="icon-prof">{{ DateTime::createFromFormat('Y-m-d H:i:s', Auth::user()->created_at)->format('d F Y') }}
+                    <img src="{{ Storage::url('assets/activeuser.png') }}" class="icon-prof">Role:
+                    {{ Auth::user()->role }}
                 </div>
                 <div class="d-flex flex-row align-items-center">
-                    <img src="{{ Storage::url('assets/activeuser.png') }}" class="icon-prof">{{ Auth::user()->role }}
-                </div>
-                <div class="d-flex flex-row align-items-center">
-                    <img src="{{ Storage::url('assets/points1.png') }}" class="icon-prof">{{ Auth::user()->points }}
+                    <img src="{{ Storage::url('assets/points1.png') }}" class="icon-prof">Points:
+                    {{ Auth::user()->points }}
                     points
                 </div>
                 <div class="d-flex flex-row align-items-center">
-                    <img src="{{ Storage::url('assets/readtime.png') }}" class="icon-prof">{{ Auth::user()->readTime }}
+                    <img src="{{ Storage::url('assets/readtime.png') }}" class="icon-prof">Readtime:
+                    {{ Auth::user()->readTime }}
                     minutes
                 </div>
             </div>
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <h1>Your recently opened books are</h1>
-                <div class = "mt-3 mb-3">
+                <div class="mt-3 mb-3">
                     @if (Auth::user()->recentOpenedBook == null)
                         <img src="{{ Storage::url('assets/nullbook.png') }}" class="icon-book-prof m-auto">
                     @else
-                        <img src="{{ Storage::url('books/'.$book->bookCover) }}" class="icon-book-prof m-auto">
+                        <img src="{{ Storage::url('books/' . $book->bookCover) }}" class="icon-book-prof m-auto">
                     @endif
                 </div>
-                <div class = "d-flex align-items-center flex-column">
+                <div class="d-flex align-items-center flex-column">
                     @if (Auth::user()->recentOpenedBook == null)
                         <h3>Is it null? :(</h3>
                         <h3>It means that you didnt read any book</h3>
                         <h3>Go read one!</h3>
                     @else
-                        <h3>{{$book->bookName}}</h3>
-                        <h3>{{$book->bookAuthor}}</h3>
+                        <h3>{{ $book->bookName }}</h3>
+                        <h3>{{ $book->bookAuthor }}</h3>
                     @endif
                 </div>
 

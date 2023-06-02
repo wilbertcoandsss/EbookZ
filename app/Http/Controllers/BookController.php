@@ -73,8 +73,10 @@ class BookController extends Controller
             'genre' =>  'required',
             'new_publisher' => 'unique:publishers,publisherName',
             'new_genre' => 'unique:genres,genreName',
-            'points' => 'required|numeric|gte:5000'
+            'points' => 'required|numeric|gte:5000',
+            'discount' => 'required'
         ];
+
 
         $validator = Validator::make($req->all(), $rules);
 
@@ -108,6 +110,14 @@ class BookController extends Controller
             $new_publisher = $req->new_publisher;
         }
 
+        $isDisc = null;
+        if ($req->discount == 'yesdisc'){
+            $isDisc = true;
+        }
+        else if ($req->discount == 'nodisc'){
+            $isDisc = false;
+        }
+
         $cover = $req->file('cover');
 
         $res = Genre::where('genreName', 'LIKE', '%' . "$new_genre" . '%')->first();
@@ -136,6 +146,7 @@ class BookController extends Controller
             'bookPage' => $req->page,
             'bookCover' => $fileNameCover,
             'bookPdf' => $pdfName,
+            'isDiscount' => $isDisc,
             'publisherID' => $res1->id,
             'bookPoints' => $req->points,
             'genreID' => $res->id,
@@ -177,7 +188,8 @@ class BookController extends Controller
         return redirect('/editBookPage')->with('message', 'Book deleted succesfully!');
     }
 
-    public function updateBook(Request $req, $id){
+    public function updateBook(Request $req, $id)
+    {
         $rules = [
             'name' => 'required',
             'cover' => 'required|mimes:jpg,jpeg,png',
@@ -190,6 +202,7 @@ class BookController extends Controller
             'pdf' => 'required',
             'publisher' => 'required',
             'genre' =>  'required',
+            'discount' => 'required',
             'new_publisher' => 'unique:publishers,publisherName',
             'new_genre' => 'unique:genres,genreName',
             'points' => 'required|numeric|gte:5000'
@@ -227,6 +240,15 @@ class BookController extends Controller
             $new_publisher = $req->new_publisher;
         }
 
+
+        $isDisc = null;
+        if ($req->discount == 'yesdisc'){
+            $isDisc = true;
+        }
+        else if ($req->discount == 'nodisc'){
+            $isDisc = false;
+        }
+
         $cover = $req->file('cover');
 
         $res = Genre::where('genreName', 'LIKE', '%' . "$new_genre" . '%')->first();
@@ -235,8 +257,8 @@ class BookController extends Controller
 
         $book = Book::find($id);
 
-        if ($book->bookCover != null){
-            Storage::delete('public/books/'.$book->bookCover);
+        if ($book->bookCover != null) {
+            Storage::delete('public/books/' . $book->bookCover);
 
             $cover = $req->file('cover');
 
@@ -250,8 +272,8 @@ class BookController extends Controller
             ]);
         }
 
-        if ($book->bookPdf != null){
-            Storage::delete('public/pdf/'.$book->bookPdf);
+        if ($book->bookPdf != null) {
+            Storage::delete('public/pdf/' . $book->bookPdf);
 
             $pdf = $req->file('pdf');
 
@@ -276,6 +298,7 @@ class BookController extends Controller
             'bookPage' => $req->page,
             'bookCover' => $fileNameCover,
             'bookPdf' => $pdfName,
+            'isDiscount' => $isDisc,
             'publisherID' => $res1->id,
             'bookPoints' => $req->points,
             'genreID' => $res->id,
@@ -286,10 +309,29 @@ class BookController extends Controller
         return redirect('/editBookPage')->with('message', 'Book Succsefully Updated!');
     }
 
-    public function searchBook(Request $req){
+    public function searchBook(Request $req)
+    {
         $search = $req->search;
-        $books = Book::where('bookName', 'LIKE', "%$search%")->get();
 
-        return view ('managebook', ['books' => $books]);
+        $books = Book::where('bookName', 'LIKE', "%$search%")->get();
+        $genre = Genre::all();
+        $bestSeller = Book::inRandomOrder()->limit(4)->get();
+        $bookSales = Book::where('isDiscount', 1)->limit(4)->get();
+
+        if (Auth::check() && Auth::user()->role == 'admin') {
+            return view('managebook', ['books' => $books]);
+        } else if (!Auth::check() || Auth::user()->role == 'customer') {
+            return view('library', ['books' => $books, 'genre' => $genre, 'bestseller' => $bestSeller, 'bookSales' => $bookSales]);
+        }
+    }
+
+    public function filterBook(Request $req, $id)
+    {
+        $books = Book::where('genreID', $id)->get();
+        $genre = Genre::all();
+        $bestSeller = Book::inRandomOrder()->limit(4)->get();
+        $bookSales = Book::where('isDiscount', 1)->limit(4)->get();
+
+        return view('library', ['books' => $books, 'genre' => $genre, 'bestseller' => $bestSeller, 'bookSales' => $bookSales]);
     }
 }

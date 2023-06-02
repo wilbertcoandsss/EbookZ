@@ -412,8 +412,81 @@ input::-webkit-inner-spin-button {
     margin-right: 15px;
 }
 
+.subscribe-btn{
+    background-color: #405969;
+    transition: .3s ease;
+    border: none;
+    padding: 13px;
+    color: white;
+    border-radius: 15px;
+}
+
+.subscribe-btn:hover{
+    transition: .3s ease;
+    color: black;
+    background-color: whitesmoke;
+}
+
+.subscribe-btn h4{
+    margin: 0px;
+}
 
 
+.read-now-btn{
+    width: 280px;
+    background-color: #405969;
+    border-radius: 15px;
+    transition: .3s ease;
+    color: white;
+    border: 1px solid whitesmoke;
+    padding: 10px;
+}
+
+.read-now-btn:hover{
+    background-color: whitesmoke;
+    border-radius: 15px;
+    transition: .3s ease;
+    color: #405969;
+    transform: scale(1.1);
+}
+
+.genre-data{
+    width: 200px;
+    background-color: #405969;
+    border-radius: 15px;
+    transition: .3s ease;
+    color: white;
+    border: 1px solid whitesmoke;
+    padding: 10px;
+    margin-bottom: 55px;
+}
+
+.genre-data:hover{
+    background-color: whitesmoke;
+    border-radius: 15px;
+    transition: .3s ease;
+    color: #405969;
+    transform: scale(1.1);
+}
+
+.genre-data-1{
+    width: 200px;
+    background-color: #405969;
+    border-radius: 15px;
+    transition: .3s ease;
+    color: white;
+    border: 1px solid whitesmoke;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.genre-data-1:hover{
+    background-color: whitesmoke;
+    border-radius: 15px;
+    transition: .3s ease;
+    color: #405969;
+    transform: scale(1.1);
+}
 /* @media screen and (max-width: 913px){
     .container{
         flex-direction: column !important;

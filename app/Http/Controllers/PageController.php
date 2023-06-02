@@ -69,6 +69,18 @@ class PageController extends Controller
         }
     }
 
+    public function goToConfSubPage(){
+        return view('confirmsubscribe');
+    }
+
+    public function goToLibrary(){
+        $books = Book::all();
+        $genre = Genre::all();
+        $bestSeller = Book::inRandomOrder()->limit(4)->get();
+        $bookSales = Book::where('isDiscount', 1)->limit(4)->get();
+        return view('library', ['books' => $books, 'genre' => $genre, 'bestseller' => $bestSeller, 'bookSales' => $bookSales]);
+    }
+
     public function goToBooksDetail($id)
     {
         $bookDetail = Book::where('id', $id)->get();
@@ -245,5 +257,18 @@ class PageController extends Controller
             $book = Book::find(Auth::user()->recentOpenedBook);
             return view('profileuser', ['book' => $book]);
         }
+    }
+
+    public function verifySubs(){
+        $subscribeStart = Carbon::now();
+        $subscribeEnd = Carbon::now()->addMonth();
+
+        User::where('id', Auth::user()->id)->update([
+            'isSubscribe' => true,
+            'subscribeStart' => $subscribeStart,
+            'subscribeEnd' => $subscribeEnd
+        ]);
+
+        return redirect('myMission')->with('message', 'Subscription added succesfully!');
     }
 }
