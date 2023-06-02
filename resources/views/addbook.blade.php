@@ -10,16 +10,8 @@
         <link rel="stylesheet" href="{{ asset('css/manageMyBook.css') }}">
         <link rel="stylesheet" href="{{ asset('css/details.css') }}">
         <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-
+        
         <div class="content">
-            <div class="searchProfile">
-                <div class="searchBar">
-                    <div class="searchLogo">
-                        <img src="fotomanagemybook/search-logo.png" />
-                    </div>
-                    <input type="text" />
-                </div>
-            </div>
             <div class="menu d-flex justify-content-start ms-2" style="margin-top: 50px">
                 <li class="ab"><a href="/manageBook">All Books</a></li>
                 <li class="ab"><a class="text-decoration-underline" href="">Add Book</a></li>

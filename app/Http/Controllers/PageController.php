@@ -232,4 +232,18 @@ class PageController extends Controller
             return redirect()->back()->with('message', 'Password didnt match!');
         }
     }
+
+    public function goToProfileAdminPage(){
+        return view('profileadmin');
+    }
+
+    public function goToProfileCustomerPage(){
+        if (Auth::user()->recentOpenedBook == null){
+            return view('profileuser');
+        }
+        else{
+            $book = Book::find(Auth::user()->recentOpenedBook);
+            return view('profileuser', ['book' => $book]);
+        }
+    }
 }

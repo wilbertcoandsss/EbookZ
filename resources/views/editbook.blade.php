@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="{{ asset('css/details.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
+    <ul class="navbar-nav w-100">
+        <form class="form-inline search-bar-1" style=""  action="/search" method="POST">
+            @csrf
+            <button class="search-submit" type="submit"><img class="search-logo"
+                    src="{{ Storage::url('/assets/search.png') }}"></button>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" name = "search">
+        </form>
+    </ul>
     <div class="content">
-        <div class="searchProfile">
-            <div class="searchBar">
-                <div class="searchLogo">
-                    <img src="fotomanagemybook/search-logo.png" />
-                </div>
-                <input type="text" />
-            </div>
-        </div>
         <div class="menu d-flex justify-content-start ms-2" style="margin-top: 50px">
             <li class="ab"><a href="/manageBook">All Books</a></li>
             <li class="ab"><a href="/addBookPage">Add Book</a></li>

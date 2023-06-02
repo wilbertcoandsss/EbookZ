@@ -151,6 +151,10 @@ class BookController extends Controller
 
         $book = Book::find($id);
 
+        User::where('id', Auth::user()->id)->update([
+            'recentOpenedBook' => $book->id
+        ]);
+
         Inventory::where('user_id', Auth::user()->id)->where('book_id', $book->id)->update([
             'isBookOpen' => 1
         ]);

@@ -83,3 +83,15 @@ Route::get('/updateBookDetail/{id}', [PageController::class, 'goToUpdateBookDeta
 Route::post('/updateBook/{id}', [BookController::class, 'updateBook']);
 
 Route::post('/search', [BookController::class, 'searchBook']);
+
+Route::get('/profileAdmin', [PageController::class, 'goToProfileAdminPage']);
+
+Route::post('/updateProfileCustomer/{id}', [AuthController::class, 'updateProfileCustomer']);
+
+Route::post('/updateAccountCusomter/{id}', [AuthController::class, 'updateAccountCustomer']);
+
+Route::get('/profileCustomer', [PageController::class, 'goToProfileCustomerPage']);
+
+Route::post('/updateProfileAdmin/{id}', [AuthController::class, 'updateProfileAdmin']);
+
+Route::post('/updateAccountAdmin/{id}', [AuthController::class, 'updateAccountAdmin']);

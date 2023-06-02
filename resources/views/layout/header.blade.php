@@ -75,7 +75,7 @@
                                         Hi, <strong>{{ Auth::user()->name }}</strong>
                                     </div>
                                     <hr class="line">
-                                    <a href="/profilePage">Your Profile</a>
+                                    <a href="/profileCustomer">Your Profile</a>
                                     <a href="/transactionHistoryPage/{{ Auth::user()->id }}">Transaction History</a>
                                     <a href="/logout">Sign out</a>
                                 </div>

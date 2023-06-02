@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    
+
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -86,12 +86,14 @@
 <body>
     <div class="sidebar">
         <h2>
-            <img class="brand-img logo" src="{{ Storage::url('assets/logo.png') }}">
+            <a href = "/adminpage">
+                <img class="brand-img logo" src="{{ Storage::url('assets/logo.png') }}">
+            </a>
         </h2>
         <ul>
             <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/manageBook">Manage Book</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="/profileAdmin">Profile</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>

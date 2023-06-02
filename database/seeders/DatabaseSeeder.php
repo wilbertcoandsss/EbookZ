@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -30,7 +31,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'wilbert@gmail.com',
             'password' => bcrypt("wilbert123"),
             'gender' => 'Male',
-            'dob' => '2003-07-24'
+            'dob' => '2003-07-24',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         User::insert([
@@ -39,7 +42,9 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt("admin123"),
             'gender' => 'Female',
             'dob' => '2003-07-24',
-            'role' => 'admin'
+            'role' => 'admin',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
     }
 }
