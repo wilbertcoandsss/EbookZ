@@ -45,25 +45,6 @@
     </div>
 
     <div style="margin-left: 55px; margin-right: 55px;">
-
-        <div class="top-container">
-            <div class="d-flex align-items-center justify-content-center flex-column">
-                <h1>It seems that you're not subscribe to us!</h1>
-                <br>
-                <h2>Only pays Rp. 150.000, you will have access to ALL BOOKS without buying them for 1 months!</h2>
-                <br>
-                <h2>So what are you waiting for?</h2>
-                <br>
-                <div>
-                    <form action="/confirmSubscribe" method="GET">
-                        <button type = "submit" class = "subscribe-btn">
-                            <h4>Subscribe Now!</h4>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
         <div class="top-container">
             <div class="d-flex flex-row align-items-center justify-content-end">
                 <div class="d-flex flex-row align-items-center" style="margin-right: 250px;">

@@ -322,7 +322,7 @@ input::-webkit-inner-spin-button {
 }
 
 .dropdown-content {
-    left : -125%;
+    left : -185%;
     display: none;
     margin-top: 6px;
     position: absolute;
@@ -416,7 +416,7 @@ input::-webkit-inner-spin-button {
     background-color: #405969;
     transition: .3s ease;
     border: none;
-    padding: 13px;
+    padding: 25px;
     color: white;
     border-radius: 15px;
 }

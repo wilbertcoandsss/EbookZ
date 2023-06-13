@@ -69,8 +69,8 @@ class PageController extends Controller
         }
     }
 
-    public function goToConfSubPage(){
-        return view('confirmsubscribe');
+    public function goToConfSubPage($id){
+        return view('confirmsubscribe', ['sid' => $id]);
     }
 
     public function goToLibrary(){
@@ -259,9 +259,21 @@ class PageController extends Controller
         }
     }
 
-    public function verifySubs(){
+    public function verifySubs($sid){
         $subscribeStart = Carbon::now();
-        $subscribeEnd = Carbon::now()->addMonth();
+
+        if ($sid == 1){
+            $subscribeEnd = Carbon::now()->addMonth(3);
+        }
+        else if ($sid == 2){
+            $subscribeEnd = Carbon::now()->addMonth(6);
+        }
+        else if ($sid == 3){
+            $subscribeEnd = Carbon::now()->addMonth(9);
+        }
+        else if ($sid == 4){
+            $subscribeEnd = Carbon::now()->addMonth(12);
+        }
 
         User::where('id', Auth::user()->id)->update([
             'isSubscribe' => true,
@@ -269,6 +281,10 @@ class PageController extends Controller
             'subscribeEnd' => $subscribeEnd
         ]);
 
-        return redirect('myMission')->with('message', 'Subscription added succesfully!');
+        return redirect('subscriptionPage')->with('message', 'Subscription added succesfully!');
+    }
+
+    public function goToSubPage(){
+        return view('subscription');
     }
 }

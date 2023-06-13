@@ -44,16 +44,19 @@
                         @csrf
                         <button class="search-submit" type="submit"><img class="search-logo"
                                 src="{{ Storage::url('/assets/search.png') }}"></button>
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" name = "search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search">
                     </form>
                 </ul>
-                <ul class="navbar-nav d-flex justify-content-around w-100">
+                <ul class="navbar-nav d-flex justify-content-around w-100 align-items-center">
                     @auth
                         @php
                             $cartCount = request()
                                 ->session()
                                 ->get('cartCounter', '');
                         @endphp
+                        <li class="nav-item">
+                            <a class="nav-link" href="/subscriptionPage">Subscription</a>
+                        </li>
                         <li class="d-flex nav-link align-items-center justify-content-center">
                             <a class="d-flex align-items-center justify-content-center" style="text-decoration:none"
                                 href="/cartPage/{{ Auth::user()->id }}"><img src="{{ Storage::url('/assets/cart].png') }}"
