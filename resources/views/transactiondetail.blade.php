@@ -22,7 +22,6 @@
                     <th>Book Cover</th>
                     <th>Book Title</th>
                     <th>Book Price</th>
-                    <th>Quantity</th>
                     <th>Sub Total</th>
                 </thead>
                 <tbody>
@@ -33,10 +32,9 @@
                             </td>
                             <td>{{ $td->books->bookName }}</td>
                             <td>{{ $td->books->bookPrice }}</td>
-                            <td>{{ $td->qty }}</td>
                             @php
-                                $SubTotal = $td->books->bookPrice * $td->qty;
-                                $TotalPrice += $td->books->bookPrice * $td->qty;
+                                $SubTotal = $td->books->bookPrice * 1;
+                                $TotalPrice += $td->books->bookPrice * 1;
                             @endphp
                             <td>Rp. {{ $SubTotal}}</td>
                         </tr>

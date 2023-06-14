@@ -24,9 +24,8 @@
                 <th>Book Cover</th>
                 <th>Book Name</th>
                 <th>Book Price</th>
-                <th>Quantity</th>
                 <th>Subtotal</th>
-                <th colspan="2" style="text-align: center">Action</th>
+                <th style="text-align: center">Action</th>
                 {{-- <th></th> --}}
             </thead>
             <tbody>
@@ -39,24 +38,11 @@
                             </td>
                             <td>{{ $c->book->bookName }}</td>
                             <td>{{ $c->book->bookPrice }}</td>
-                            <td>
-                                <div class="form-content-1">
-                                    <div class="form-insert">
-                                        <input id="priceInsert" type="number" name="qty" value="{{ $c->qty }}"
-                                            min="1">
-                                    </div>
-                                </div>
-                            </td>
                             @php
-                                $subTotal = $c->book->bookPrice * $c->qty;
+                                $subTotal = $c->book->bookPrice * 1;
                                 $grandTotal = $grandTotal + $subTotal;
                             @endphp
                             <td>{{ $subTotal }}</td>
-                            <td>
-                                <div class="submit-qty">
-                                    <input type="submit" value="Update">
-                                </div>
-                            </td>
                             <td>
                                 <div class="remove-cart">
                                     <a href="/deleteCart/{{ $c->id }}">Remove</a>

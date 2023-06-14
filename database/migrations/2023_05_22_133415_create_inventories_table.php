@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('book_id');
-            $table->integer('qty');
             $table->timestamps();
             $table->boolean('isBookOpen')->default('0');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

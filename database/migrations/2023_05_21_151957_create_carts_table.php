@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger("book_id");
             $table->foreign("book_id")->references('id')->on('books')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign("user_id")->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer("qty");
             $table->timestamps();
         });
     }

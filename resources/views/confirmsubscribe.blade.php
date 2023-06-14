@@ -16,76 +16,152 @@
         <h1 class="fw-bold mt-4">Subscription Confirmation</h1>
         <br>
         @if ($sid == 1)
-            <h2 class="fw-semibold">Your subscription will be 3 month started from</h2>
-            <br>
-            <br>
-            <h2 class="fw-bold">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', now())->format('d F Y H:i:s') }}</h2>
-            <br>
-            <h2 class="fw-semibold">until</h2>
-            <br>
-            @php
-                $futureDate = \Carbon\Carbon::now()->addMonth(3);
-            @endphp
-            <h2 class="fw-bold">{{ $futureDate->format('d F Y H:i:s') }}</h2>
-            <br>
-            <h2 class="fw-semibold">
-                Input your password to confim and buy this subscription (Rp. 150.000)
-            </h2>
-            <br>
+            @if (Auth::user()->isSubscribe)
+                <h2 class="fw-semibold">Your subscription will be 3 month started from</h2>
+                <br>
+                <br>
+                <h2 class="fw-bold">{{ \Carbon\Carbon::parse(Auth::user()->subscribeEnd)->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">until</h2>
+                <br>
+                @php
+                    $futureDate = \Carbon\Carbon::parse(Auth::user()->subscribeEnd)->addMonth(3);
+                @endphp
+                <h2 class="fw-bold">{{ $futureDate->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">
+                    Input your password to confim and buy this subscription (Rp. 150.000)
+                </h2>
+                <br>
+            @else
+                <h2 class="fw-semibold">Your subscription will be 3 month started from</h2>
+                <br>
+                <br>
+                <h2 class="fw-bold">{{ \Carbon\Carbon::now()->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">until</h2>
+                <br>
+                @php
+                    $futureDate = \Carbon\Carbon::now()->addMonth(6);
+                @endphp
+                <h2 class="fw-bold">{{ $futureDate->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">
+                    Input your password to confim and buy this subscription (Rp. 150.000)
+                </h2>
+                <br>
+            @endif
         @elseif ($sid == 2)
-            <h2 class="fw-semibold">Your subscription will be 6 month started from</h2>
-            <br>
-            <br>
-            <h2 class="fw-bold">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', now())->format('d F Y H:i:s') }}</h2>
-            <br>
-            <h2 class="fw-semibold">until</h2>
-            <br>
-            @php
-                $futureDate = \Carbon\Carbon::now()->addMonth(6);
-            @endphp
-            <h2 class="fw-bold">{{ $futureDate->format('d F Y H:i:s') }}</h2>
-            <br>
-            <h2 class="fw-semibold">
-                Input your password to confim and buy this subscription (Rp. 250.000)
-            </h2>
-            <br>
+            @if (Auth::user()->isSubscribe)
+                <h2 class="fw-semibold">Your subscription will be 6 month started from</h2>
+                <br>
+                <br>
+                <h2 class="fw-bold">{{ \Carbon\Carbon::parse(Auth::user()->subscribeEnd)->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">until</h2>
+                <br>
+                @php
+                    $futureDate = \Carbon\Carbon::parse(Auth::user()->subscribeEnd)->addMonth(6);
+                @endphp
+                <h2 class="fw-bold">{{ $futureDate->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">
+                    Input your password to confim and buy this subscription (Rp. 250.000)
+                </h2>
+                <br>
+            @else
+                <h2 class="fw-semibold">Your subscription will be 6 month started from</h2>
+                <br>
+                <br>
+                <h2 class="fw-bold">{{ \Carbon\Carbon::now()->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">until</h2>
+                <br>
+                @php
+                    $futureDate = \Carbon\Carbon::now()->addMonth(6);
+                @endphp
+                <h2 class="fw-bold">{{ $futureDate->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">
+                    Input your password to confim and buy this subscription (Rp. 250.000)
+                </h2>
+                <br>
+            @endif
         @elseif ($sid == 3)
-            <h2 class="fw-semibold">Your subscription will be 9 month started from</h2>
-            <br>
-            <br>
-            <h2 class="fw-bold">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', now())->format('d F Y H:i:s') }}</h2>
-            <br>
-            <h2 class="fw-semibold">until</h2>
-            <br>
-            @php
-                $futureDate = \Carbon\Carbon::now()->addMonth(9);
-            @endphp
-            <h2 class="fw-bold">{{ $futureDate->format('d F Y H:i:s') }}</h2>
-            <br>
-            <h2 class="fw-semibold">
-                Input your password to confim and buy this subscription (Rp. 400.000)
-            </h2>
-            <br>
-        @elseif ($sid == 4)
-            <h2 class="fw-semibold">Your subscription will be 12 month started from</h2>
-            <br>
-            <br>
-            <h2 class="fw-bold">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', now())->format('d F Y H:i:s') }}</h2>
-            <br>
-            <h2 class="fw-semibold">until</h2>
-            <br>
-            @php
-                $futureDate = \Carbon\Carbon::now()->addMonth(12);
-            @endphp
-            <h2 class="fw-bold">{{ $futureDate->format('d F Y H:i:s') }}</h2>
-            <br>
-            <h2 class="fw-semibold">
-                Input your password to confim and buy this subscription (Rp. 550.000)
-            </h2>
-            <br>
+            @if (Auth::user()->isSubscribe)
+                <h2 class="fw-semibold">Your subscription will be 9 month started from</h2>
+                <br>
+                <br>
+                <h2 class="fw-bold">{{ \Carbon\Carbon::parse(Auth::user()->subscribeEnd)->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">until</h2>
+                <br>
+                @php
+                    $futureDate = \Carbon\Carbon::parse(Auth::user()->subscribeEnd)->addMonth(9);
+                @endphp
+                <h2 class="fw-bold">{{ $futureDate->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">
+                    Input your password to confim and buy this subscription (Rp. 400.000)
+                </h2>
+                <br>
+            @else
+                <h2 class="fw-semibold">Your subscription will be 9 month started from</h2>
+                <br>
+                <br>
+                <h2 class="fw-bold">{{ \Carbon\Carbon::now()->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">until</h2>
+                <br>
+                @php
+                    $futureDate = \Carbon\Carbon::now()->addMonth(9);
+                @endphp
+                <h2 class="fw-bold">{{ $futureDate->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">
+                    Input your password to confim and buy this subscription (Rp. 400.000)
+                </h2>
+                <br>
+            @endif
+        @elseif($sid == 4)
+            @if (Auth::user()->isSubscribe)
+                <h2 class="fw-semibold">Your subscription will be 12 month started from</h2>
+                <br>
+                <br>
+                <h2 class="fw-bold">{{ \Carbon\Carbon::parse(Auth::user()->subscribeEnd)->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">until</h2>
+                <br>
+                @php
+                    $futureDate = \Carbon\Carbon::parse(Auth::user()->subscribeEnd)->addMonth(12);
+                @endphp
+                <h2 class="fw-bold">{{ $futureDate->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">
+                    Input your password to confim and buy this subscription (Rp. 550.000)
+                </h2>
+                <br>
+            @else
+                <h2 class="fw-semibold">Your subscription will be 12 month started from</h2>
+                <br>
+                <br>
+                <h2 class="fw-bold">{{ \Carbon\Carbon::now()->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">until</h2>
+                <br>
+                @php
+                    $futureDate = \Carbon\Carbon::now()->addMonth(6);
+                @endphp
+                <h2 class="fw-bold">{{ $futureDate->format('d F Y') }}</h2>
+                <br>
+                <h2 class="fw-semibold">
+                    Input your password to confim and buy this subscription (Rp. 550.000)
+                </h2>
+                <br>
+            @endif
         @endif
         <br>
-        <form action="/verifySubs/{{$sid}}" method="POST">
+        <form action="/verifySubs/{{ $sid }}" method="POST">
             @csrf
             <input class="input-pw-before-read" type="password" name="password" placeholder="Enter your password">
             <input class="submit-before-read" type="submit">

@@ -9,7 +9,7 @@
         <div style="margin-left: 280px; margin-right: 280px;">
             <h1 style="font-family: 'Poppins'; font-weight: 600; ">Overviews</h1>
             <div style="margin-top: 40px;"></div>
-            <div class="d-flex flex-row justify-content-between mt-1 mb-3 align-items-center">
+            <div class="d-flex flex-row justify-content-center mt-1 mb-3 align-items-center">
                 <img style="margin-right: 50px" class="book-pic-detail" src="{{ Storage::url('books/' . $b->bookCover) }}">
                 <div class="text-left mb-3">
                     <div class="title-box">
@@ -28,16 +28,9 @@
                             Rp. {{ $b->bookPrice }}
                         </div>
                         <form action="/addToCart/{{ $b->id }}" method="POST">
-                            <div class="d-flex flex-row justify-content-between" style="width: 230px">
-                                <div class="qtyOuter">
-                                    <button type="button" class="qtyBtn" onclick="decreaseQty()">-</button>
-                                    <input type="number" id="qtyInput" name="qty" value="1" readonly>
-                                    <button type="button" class="qtyBtn" onclick="increaseQty()">+</button>
-                                </div>
-                                <div class="addtocart">
-                                    @csrf
-                                    <input type="submit" value="Add to Cart">
-                                </div>
+                            <div class="addtocart">
+                                @csrf
+                                <input type="submit" value="Add to Cart">
                             </div>
                         </form>
                     </div>
@@ -49,7 +42,6 @@
                             </form>
                         </div>
                     @else
-
                     @endif
                 </div>
             </div>

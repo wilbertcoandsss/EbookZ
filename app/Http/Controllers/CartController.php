@@ -31,38 +31,15 @@ class CartController extends Controller
 
             $book = Book::find($id);
 
-            $qty = $req->qty;
-
-            $check = Cart::where('book_id', '=', "$req->id")->where('user_id', '=', Auth::user()->id)->first();
-
-            if ($check == NULL) {
-                Cart::insert([
-                    'user_id' => Auth::user()->id,
-                    'book_id' => $book->id,
-                    'qty' => $qty,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ]);
-            } else {
-                $incrementQty = $check->qty + $qty;
-                Cart::where('book_id', $req->id)->update([
-                    'qty' => $incrementQty
-                ]);
-            }
+            Cart::insert([
+                'user_id' => Auth::user()->id,
+                'book_id' => $book->id,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
 
             return redirect('/')->with('message', 'Product added to cart succesfully!');
         }
-    }
-
-    public function updateQty(Request $req, $id)
-    {
-
-        Cart::where('id', $id)->update([
-            'qty' => $req->qty
-        ]);
-
-
-        return redirect('cartPage/' . Auth::user()->id)->with('message', 'Game Quantity Updated!');
     }
 
     public function deleteCart($id)
@@ -91,7 +68,6 @@ class CartController extends Controller
         for ($i = 0; $i < $count; $i++) {
             $array[] = array(
                 'book_id' => $books[$i]->book_id,
-                'qty' => $books[$i]->qty
             );
         }
 
@@ -105,8 +81,7 @@ class CartController extends Controller
                 'transaction_header_id' => $getLatestData->id,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                'book_id' => $books[$i]->book_id,
-                'qty' => $books[$i]->qty
+                'book_id' => $books[$i]->book_id
             ]);
         }
 
@@ -117,7 +92,6 @@ class CartController extends Controller
                 Inventory::insert([
                     'book_id' => $books[$i]->book_id,
                     'user_id' => Auth::user()->id,
-                    'qty' => $books[$i]->qty,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ]);

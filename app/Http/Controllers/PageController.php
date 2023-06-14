@@ -69,11 +69,13 @@ class PageController extends Controller
         }
     }
 
-    public function goToConfSubPage($id){
+    public function goToConfSubPage($id)
+    {
         return view('confirmsubscribe', ['sid' => $id]);
     }
 
-    public function goToLibrary(){
+    public function goToLibrary()
+    {
         $books = Book::all();
         $genre = Genre::all();
         $bestSeller = Book::inRandomOrder()->limit(4)->get();
@@ -102,40 +104,45 @@ class PageController extends Controller
         return view('register');
     }
 
-    public function goToManageBookPage(){
+    public function goToManageBookPage()
+    {
         $book = Book::all();
         return view('managebook', ['books' => $book]);
     }
 
-    public function goToEditBookPage(){
+    public function goToEditBookPage()
+    {
         $book = Book::all();
         return view('editbook', ['books' => $book]);
     }
 
-    public function goToAddBookPage(){
+    public function goToAddBookPage()
+    {
         // $book = Book::all();
         $publisher = Publisher::all();
         $genre = Genre::all();
         return view('addbook', ['publisher' => $publisher, 'genre' => $genre]);
     }
 
-    public function goToUpdateBookDetailPage($id){
+    public function goToUpdateBookDetailPage($id)
+    {
         $books = Book::find($id);
         $publisher = Publisher::all();
         $genre = Genre::all();
-        return view ('updatebookdetail', ['books' => $books, 'publisher' => $publisher, 'genre' => $genre]);
+        return view('updatebookdetail', ['books' => $books, 'publisher' => $publisher, 'genre' => $genre]);
     }
 
-    public function goToDashboardPage(){
+    public function goToDashboardPage()
+    {
         $transaction = TransactionHeader::all();
         $result = DB::table('transaction_details as td')
-        ->join('books as b', 'td.book_id', '=', 'b.id')
-        ->select(DB::raw('SUM(td.qty * b.bookPrice) as total'))
-        ->first();
+            ->join('books as b', 'td.book_id', '=', 'b.id')
+            ->select(DB::raw('SUM(1 * b.bookPrice) as total'))
+            ->first();
 
         $total = $result->total;
 
-        return view ('dashboard', ['transaction' => $transaction, 'total' => $total]);
+        return view('dashboard', ['transaction' => $transaction, 'total' => $total]);
     }
 
     public function goToMissionPage()
@@ -162,7 +169,6 @@ class PageController extends Controller
         Inventory::insert([
             'book_id' => $book->id,
             'user_id' => Auth::user()->id,
-            'qty' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -217,7 +223,6 @@ class PageController extends Controller
             Inventory::insert([
                 'book_id' => $book->id,
                 'user_id' => Auth::user()->id,
-                'qty' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -226,53 +231,65 @@ class PageController extends Controller
         return redirect('/myMission')->with('message', 'Redeem success!');
     }
 
-    public function beforeReadPage($id){
+    public function beforeReadPage($id)
+    {
         $book = Book::find($id);
         return view('beforeread', ['book' => $book]);
     }
 
-    public function verifyPw(Request $req, $bid){
+    public function verifyPw(Request $req, $bid)
+    {
         $pw = $req->password;
         $book = Book::find($bid);
         $user = User::find(Auth::user()->id);
 
-        if(Hash::check($pw, $user->password)){
+        if (Hash::check($pw, $user->password)) {
             return redirect()->route('readingBookPage', ['id' => $book->id]);
-        }
-
-        else{
+        } else {
             return redirect()->back()->with('message', 'Password didnt match!');
         }
     }
 
-    public function goToProfileAdminPage(){
+    public function goToProfileAdminPage()
+    {
         return view('profileadmin');
     }
 
-    public function goToProfileCustomerPage(){
-        if (Auth::user()->recentOpenedBook == null){
+    public function goToProfileCustomerPage()
+    {
+        if (Auth::user()->recentOpenedBook == null) {
             return view('profileuser');
-        }
-        else{
+        } else {
             $book = Book::find(Auth::user()->recentOpenedBook);
             return view('profileuser', ['book' => $book]);
         }
     }
 
-    public function verifySubs($sid){
+    public function verifySubs($sid)
+    {
         $subscribeStart = Carbon::now();
 
-        if ($sid == 1){
-            $subscribeEnd = Carbon::now()->addMonth(3);
-        }
-        else if ($sid == 2){
-            $subscribeEnd = Carbon::now()->addMonth(6);
-        }
-        else if ($sid == 3){
-            $subscribeEnd = Carbon::now()->addMonth(9);
-        }
-        else if ($sid == 4){
-            $subscribeEnd = Carbon::now()->addMonth(12);
+        if (Auth::user()->isSubscribe) {
+            $subscribeStart = Auth::user()->subscribeStart;
+            if ($sid == 1) {
+                $subscribeEnd = Carbon::parse(Auth::user()->subscribeEnd)->addMonth(3);
+            } else if ($sid == 2) {
+                $subscribeEnd = Carbon::parse(Auth::user()->subscribeEnd)->addMonth(6);
+            } else if ($sid == 3) {
+                $subscribeEnd = Carbon::parse(Auth::user()->subscribeEnd)->addMonth(9);
+            } else if ($sid == 4) {
+                $subscribeEnd = Carbon::parse(Auth::user()->subscribeEnd)->addMonth(12);
+            }
+        } else {
+            if ($sid == 1) {
+                $subscribeEnd = Carbon::now()->addMonth(3);
+            } else if ($sid == 2) {
+                $subscribeEnd = Carbon::now()->addMonth(6);
+            } else if ($sid == 3) {
+                $subscribeEnd = Carbon::now()->addMonth(9);
+            } else if ($sid == 4) {
+                $subscribeEnd = Carbon::now()->addMonth(12);
+            }
         }
 
         User::where('id', Auth::user()->id)->update([
@@ -284,7 +301,8 @@ class PageController extends Controller
         return redirect('subscriptionPage')->with('message', 'Subscription added succesfully!');
     }
 
-    public function goToSubPage(){
+    public function goToSubPage()
+    {
         return view('subscription');
     }
 }
