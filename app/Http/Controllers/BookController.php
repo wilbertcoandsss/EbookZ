@@ -67,11 +67,9 @@ class BookController extends Controller
             'description' => 'required',
             'date' => 'required',
             'page' => 'required|numeric|gte:0',
-            'isbn' => 'required|numeric|gte:0|ls:17',
+            'isbn' => 'required|numeric|gte:0',
             'pdf' => 'required',
-            'publisher' => 'required',
             'genre' =>  'required',
-            'new_publisher' => 'unique:publishers,publisherName',
             'new_genre' => 'unique:genres,genreName',
             'points' => 'required|numeric|gte:5000',
             'discount' => 'required'
@@ -84,8 +82,6 @@ class BookController extends Controller
             return back()->withErrors($validator);
         }
         $new_genre = $req->genre;
-        $new_publisher = $req->publisher;
-        // dd($new_genre, $new_publisher);
 
         if ($req->new_genre != null) {
             Genre::insert([
@@ -95,19 +91,6 @@ class BookController extends Controller
             ]);
 
             $new_genre = $req->new_genre;
-        }
-
-
-        if ($req->new_publisher != null) {
-            // dd("MASUK", $req->new_publisher);
-            Publisher::insert([
-                'publisherName' => $req->new_publisher,
-                'publisherEmail' => "@gmail.combang",
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
-
-            $new_publisher = $req->new_publisher;
         }
 
         $isDisc = null;
@@ -121,8 +104,7 @@ class BookController extends Controller
         $cover = $req->file('cover');
 
         $res = Genre::where('genreName', 'LIKE', '%' . "$new_genre" . '%')->first();
-        // $res1 = Publisher::where('publisherName', 'LIKE', '%"$new_publisher"%')->first();
-        $res1 = Publisher::where('publisherName', 'LIKE', '%' . $new_publisher . '%')->first();
+        $res1 = Publisher::where('PublisherName', Auth::user()->name)->first();
 
         $coverExtension = $cover->getClientOriginalExtension();
         $fileNameCover = $req->name . '.' . $coverExtension;
@@ -198,12 +180,10 @@ class BookController extends Controller
             'description' => 'required',
             'date' => 'required',
             'page' => 'required|numeric|gte:0',
-            'isbn' => 'required|numeric|gte:0|ls:17',
+            'isbn' => 'required|numeric|gte:0',
             'pdf' => 'required',
-            'publisher' => 'required',
             'genre' =>  'required',
             'discount' => 'required',
-            'new_publisher' => 'unique:publishers,publisherName',
             'new_genre' => 'unique:genres,genreName',
             'points' => 'required|numeric|gte:5000'
         ];
@@ -214,8 +194,6 @@ class BookController extends Controller
             return back()->withErrors($validator);
         }
         $new_genre = $req->genre;
-        $new_publisher = $req->publisher;
-        // dd($new_genre, $new_publisher);
 
         if ($req->new_genre != null) {
             Genre::insert([
@@ -226,20 +204,6 @@ class BookController extends Controller
 
             $new_genre = $req->new_genre;
         }
-
-
-        if ($req->new_publisher != null) {
-            // dd("MASUK", $req->new_publisher);
-            Publisher::insert([
-                'publisherName' => $req->new_publisher,
-                'publisherEmail' => "@gmail.combang",
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
-
-            $new_publisher = $req->new_publisher;
-        }
-
 
         $isDisc = null;
         if ($req->discount == 'yesdisc'){
@@ -253,7 +217,7 @@ class BookController extends Controller
 
         $res = Genre::where('genreName', 'LIKE', '%' . "$new_genre" . '%')->first();
         // $res1 = Publisher::where('publisherName', 'LIKE', '%"$new_publisher"%')->first();
-        $res1 = Publisher::where('publisherName', 'LIKE', '%' . $new_publisher . '%')->first();
+        $res1 = Publisher::where('PublisherName', Auth::user()->name)->first();
 
         $book = Book::find($id);
 
@@ -312,13 +276,15 @@ class BookController extends Controller
     public function searchBook(Request $req)
     {
         $search = $req->search;
+        $publisherId = Publisher::where('PublisherName', Auth::user()->name)->first();
 
-        $books = Book::where('bookName', 'LIKE', "%$search%")->get();
+        $books = Book::where('bookName', 'LIKE', "%$search%")->where('publisherID', $publisherId->id)->get();
+
         $genre = Genre::all();
         $bestSeller = Book::inRandomOrder()->limit(4)->get();
         $bookSales = Book::where('isDiscount', 1)->limit(4)->get();
 
-        if (Auth::check() && Auth::user()->role == 'admin') {
+        if (Auth::check() && Auth::user()->role == 'Publisher') {
             return view('managebook', ['books' => $books]);
         } else if (!Auth::check() || Auth::user()->role == 'customer') {
             return view('library', ['books' => $books, 'genre' => $genre, 'bestseller' => $bestSeller, 'bookSales' => $bookSales]);

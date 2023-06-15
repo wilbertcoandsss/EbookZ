@@ -22,8 +22,6 @@ class PageController extends Controller
     //
     public function goToMyBooks()
     {
-
-        // session()->forget('startTime');
         if (Auth::check()) {
             if (session()->has('startTime') != null) {
                 $currentTime = Carbon::now();
@@ -94,9 +92,9 @@ class PageController extends Controller
         return view('login');
     }
 
-    public function goToAdminPage()
+    public function goToPublisherPage()
     {
-        return view('adminpage');
+        return view('publisherpage');
     }
 
     public function goToRegisterPage()
@@ -106,13 +104,15 @@ class PageController extends Controller
 
     public function goToManageBookPage()
     {
-        $book = Book::all();
+        $publisherId = Publisher::where('publisherName', Auth::user()->name)->first();
+        $book = Book::where('publisherID', $publisherId->id)->get();
         return view('managebook', ['books' => $book]);
     }
 
     public function goToEditBookPage()
     {
-        $book = Book::all();
+        $publisherId = Publisher::where('publisherName', Auth::user()->name)->first();
+        $book = Book::where('publisherID', $publisherId->id)->get();
         return view('editbook', ['books' => $book]);
     }
 
@@ -250,9 +250,9 @@ class PageController extends Controller
         }
     }
 
-    public function goToProfileAdminPage()
+    public function goToProfilePublisherPage()
     {
-        return view('profileadmin');
+        return view('profilepublisher');
     }
 
     public function goToProfileCustomerPage()

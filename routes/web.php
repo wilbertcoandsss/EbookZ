@@ -66,7 +66,7 @@ Route::post('/verifyPw/{bid}', [PageController::class, 'verifyPw']);
 
 Route::post('/verifySubs/{sid}', [PageController::class, 'verifySubs']);
 
-Route::get('/adminpage', [PageController::class, 'goToAdminPage']);
+Route::get('/publisherpage', [PageController::class, 'goToPublisherPage']);
 
 Route::get('/dashboard', [PageController::class, 'goToDashboardPage']);
 
@@ -86,7 +86,7 @@ Route::post('/updateBook/{id}', [BookController::class, 'updateBook']);
 
 Route::post('/search', [BookController::class, 'searchBook']);
 
-Route::get('/profileAdmin', [PageController::class, 'goToProfileAdminPage']);
+Route::get('/profilePublisher', [PageController::class, 'goToProfilePublisherPage']);
 
 Route::post('/updateProfileCustomer/{id}', [AuthController::class, 'updateProfileCustomer']);
 
@@ -94,9 +94,9 @@ Route::post('/updateAccountCusomter/{id}', [AuthController::class, 'updateAccoun
 
 Route::get('/profileCustomer', [PageController::class, 'goToProfileCustomerPage']);
 
-Route::post('/updateProfileAdmin/{id}', [AuthController::class, 'updateProfileAdmin']);
+Route::post('/updateProfilePublisher/{id}', [AuthController::class, 'updateProfilePublisher']);
 
-Route::post('/updateAccountAdmin/{id}', [AuthController::class, 'updateAccountAdmin']);
+Route::post('/updateAccountPublisher/{id}', [AuthController::class, 'updateAccountPublisher']);
 
 Route::get('/confirmSubscribe/{id}', [PageController::class, 'goToConfSubPage']);
 

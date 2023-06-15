@@ -56,7 +56,7 @@
             <div class="d-flex flex-row">
                 @foreach ($books as $b)
                     <div class="d-flex flex-column rounded-4 rec-book w-100" style="font-family: 'Poppins', sans-serif;">
-                        <a href="/bookDetail/{{$b->id}}">
+                        <a href="/bookDetail/{{ $b->id }}">
                             <div class="d-flex justify-content-center mt-1 mb-3">
                                 <img class="book-pic-s" src="{{ Storage::url('books/' . $b->bookCover) }}">
                             </div>
@@ -83,14 +83,16 @@
         </div>
 
         <div class="box rounded-5 ms-3 me-3">
-            <h2 style="font-family: 'Playfair Display'; font-weight: 600; color:#405969; font-size: 40px">Popular in 2023</h2>
+            <h2 style="font-family: 'Playfair Display'; font-weight: 600; color:#405969; font-size: 40px">Popular in 2023
+            </h2>
             <br>
-            <h4 style="font-family: 'Poppins'; font-weight: 600; font-size: 18px;">Here is the most popular novel back in 2023!
+            <h4 style="font-family: 'Poppins'; font-weight: 600; font-size: 18px;">Here is the most popular novel back in
+                2023!
             </h4>
             <div class="d-flex flex-row">
                 @foreach ($bookPopular as $b)
                     <div class="d-flex flex-column rounded-4 rec-book w-100" style="font-family: 'Poppins', sans-serif;">
-                        <a href="/bookDetail/{{$b->id}}">
+                        <a href="/bookDetail/{{ $b->id }}">
                             <div class="d-flex justify-content-center mt-1 mb-3">
                                 <img class="book-pic-s" src="{{ Storage::url('books/' . $b->bookCover) }}">
                             </div>
@@ -122,18 +124,18 @@
             <div>
                 <h2 class="fw-bold">Best Sellers</h2>
             </div>
-            <div>
-                <a href="">
+            <form action="/library" method="GET">
+                <button type="submit" class="view-more-btn">
                     View More
-                </a>
-            </div>
+                </button>
+            </form>
         </div>
 
         <div class="d-flex flex-row">
             @foreach ($bestSeller as $b)
                 <div class="d-flex flex-column rounded-4 rec-book w-100 ms-3 me-3"
                     style="font-family: 'Poppins', sans-serif;">
-                    <a class="d-flex flex-row w-100 justify-content-around" href="/bookDetail/{{$b->id}}">
+                    <a class="d-flex flex-row w-100 justify-content-around" href="/bookDetail/{{ $b->id }}">
                         <div class="d-flex justify-content-center mt-1 mb-3">
                             <img class="book-pic" src="{{ Storage::url('books/' . $b->bookCover) }}">
                         </div>
@@ -204,19 +206,20 @@
     <div class="d-flex flex-column mt-5 mb-5 p-5 ms-5 me-5">
         <div class="d-flex w-100 justify-content-between">
             <div>
-                <h2 class = "fw-bold">Books on Sale!</h2>
+                <h2 class="fw-bold">Books on Sale!</h2>
             </div>
-            <div>
-                <a href="">
+            <form action="/library" method="GET">
+                <button type="submit" class="view-more-btn">
                     View More
-                </a>
-            </div>
+                </button>
+            </form>
         </div>
         <div class="d-flex flex-row">
             @foreach ($bookSales as $b)
                 <div class="d-flex flex-column rounded-4 rec-book w-100 ms-3 me-3"
                     style="font-family: 'Poppins', sans-serif;">
-                    <a class="d-flex  position-relative flex-row w-100 justify-content-around" href="/bookDetail/{{$b->id}}">
+                    <a class="d-flex  position-relative flex-row w-100 justify-content-around"
+                        href="/bookDetail/{{ $b->id }}">
                         <div class="sale-div position-absolute badge bg-warning text-dark p-2 m-3">
                             Sale!
                         </div>

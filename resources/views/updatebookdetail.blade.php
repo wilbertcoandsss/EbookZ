@@ -165,38 +165,6 @@
 
                     <hr>
                     <div class="d-flex flex-column">
-                        <div class="details-box d-flex flex-row align-items-center" oninput="publisherValidation()">
-                            <h4>Book Publisher</h4>
-                            {{-- <h6>{{ $b->bookAuthor }}</h6> --}}
-                            <select id="publisher" name="publisher">
-                                @foreach ($publisher as $p)
-                                    <option value={{ $p->publisherName }}>{{ $p->publisherName }}</option>
-                                @endforeach
-                                <option value="newpublisher">Add New Publisher</option>
-                            </select>
-                        </div>
-                        <br>
-                        <div class="error-msg">
-                            @error('new_publisher')
-                                <strong class="error-msg">{{ $message }}</strong>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <hr id="myhr" style="display: none">
-                    <div class="d-flex flex-column">
-                        <div class="details-box flex-row align-items-center" id="new-publisher-form"
-                            style="display: none">
-                            <h4>Book Publisher</h4>
-
-                            {{-- <h6>{{ $b->bookAuthor }}</h6> --}}
-                            <input type="text" name="new_publisher" id="">
-                        </div>
-                    </div>
-
-                    <hr>
-                    <div class="d-flex flex-column">
                         <div class="details-box d-flex flex-row align-items-center" oninput="genreValidation()">
                             <h4>Book Genre</h4>
                             <select id="genre" name="genre">

@@ -25,7 +25,7 @@
     <div class="d-flex justify-content-between flex-column ms-2 me-5">
         <br>
         <br>
-        <h2 class="fw-bold text-center">All Books</h2>
+        <h2 class="fw-bold text-center">All Books by <br>{{Auth::user()->name}}</h2>
         <div class="table-tr-admin">
             <table style="border-collapse: collapse">
                 <thead>

@@ -421,6 +421,34 @@ input::-webkit-inner-spin-button {
     border-radius: 15px;
 }
 
+.view-more-btn{
+    background-color: #405969;
+    transition: .3s ease;
+    border: none;
+    padding: 18px;
+    border-radius: 15px;
+    color: white;
+}
+
+.view-more-btn:hover{
+    transition: .3s ease;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.view-more-btn button{
+    border: none;
+    background-color: #405969;
+    color: white;
+}
+
+.view-more-btn button:hover{
+    border: none;
+    background-color: white;
+    color: black;
+}
+
 .subscribe-btn:hover{
     transition: .3s ease;
     color: black;

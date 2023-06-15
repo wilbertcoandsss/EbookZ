@@ -37,12 +37,56 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::insert([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt("admin123"),
+            'name' => 'Crown Publishing Group',
+            'email' => 'crown-group@publishing.pub',
+            'password' => bcrypt("crowngroup"),
+            'gender' => 'Male',
+            'dob' => '2003-07-24',
+            'role' => 'Publisher',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        User::insert([
+            'name' => 'Gramedia Pustaka Utama',
+            'email' => 'gramedia.utama@publishing.pub',
+            'password' => bcrypt("gramediautama"),
             'gender' => 'Female',
             'dob' => '2003-07-24',
-            'role' => 'admin',
+            'role' => 'Publisher',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        User::insert([
+            'name' => 'Penguin Random House',
+            'email' => 'penguin.house@publishing.pub',
+            'password' => bcrypt("penguinhouse"),
+            'gender' => 'Male',
+            'dob' => '2003-07-24',
+            'role' => 'Publisher',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        User::insert([
+            'name' => 'Harper Collins',
+            'email' => 'harper.collins@publishing.pub',
+            'password' => bcrypt("harpercollins"),
+            'gender' => 'Male',
+            'dob' => '2003-07-24',
+            'role' => 'Publisher',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        User::insert([
+            'name' => 'Macmillan',
+            'email' => 'macmillan@publishing.pub',
+            'password' => bcrypt("macmillan"),
+            'gender' => 'Female',
+            'dob' => '2003-07-24',
+            'role' => 'Publisher',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

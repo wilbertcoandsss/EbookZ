@@ -61,6 +61,11 @@
                 </div>
                 <hr>
                 <div class="details-box d-flex flex-row align-items-center">
+                    <h5>PUBLISHER</h5>
+                    <h6>{{ $b->publisher->publisherName }}</h6>
+                </div>
+                <hr>
+                <div class="details-box d-flex flex-row align-items-center">
                     <h5>ISBN</h5>
                     <h6>{{ $b->ISBN }}</h6>
                 </div>

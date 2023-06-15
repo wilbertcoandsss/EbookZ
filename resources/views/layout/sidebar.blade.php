@@ -93,7 +93,7 @@
         <ul>
             <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/manageBook">Manage Book</a></li>
-            <li><a href="/profileAdmin">Profile</a></li>
+            <li><a href="/profilePublisher">Profile</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>

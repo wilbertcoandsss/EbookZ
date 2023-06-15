@@ -67,8 +67,8 @@ class AuthController extends Controller
         }
 
         if (Auth::attempt($credentials)) {
-            if (Auth::user()->role == 'admin') {
-                return redirect('adminpage');
+            if (Auth::user()->role == 'Publisher') {
+                return redirect('publisherpage');
             } else {
                 return redirect('/');
             }
@@ -85,7 +85,7 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    public function updateProfileAdmin(Request $req, $id)
+    public function updateProfilePublisher(Request $req, $id)
     {
         $rules = [
             'name' => 'required',
@@ -127,7 +127,7 @@ class AuthController extends Controller
         return redirect('/profileCustomer')->with('message', 'Profile Updated succesfully!');
     }
 
-    public function updateAccountAdmin(Request $req, $id){
+    public function updateAccountPublisher(Request $req, $id){
         $rules = [
             'confirm_pw' => 'required|same:new_pw',
             'old_pw' => 'required',

@@ -17,14 +17,28 @@ class PublisherSeeder extends Seeder
         //
         Publisher::insert([
             'publisherName' => "Crown Publishing Group",
-            'publisherEmail' => "crown-group@publishing.pub",
+            'publisherEmail' => "crown.group@publishing.pub",
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         Publisher::insert([
             'publisherName' => "Gramedia Pustaka Utama",
-            'publisherEmail' => "gramedia-pustaka@publishing.pub",
+            'publisherEmail' => "gramedia.utama@publishing.pub",
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        Publisher::insert([
+            'publisherName' => "Penguin Random House",
+            'publisherEmail' => "penguin.house@publishing.pub",
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        Publisher::insert([
+            'publisherName' => "Harper Collins",
+            'publisherEmail' => "harper.collins@publishing.pub",
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
@@ -36,11 +50,6 @@ class PublisherSeeder extends Seeder
             'updated_at' => Carbon::now()
         ]);
 
-        Publisher::insert([
-            'publisherName' => "Zetsinger",
-            'publisherEmail' => "zetsinger@publishing.pub",
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-        ]);
+
     }
 }

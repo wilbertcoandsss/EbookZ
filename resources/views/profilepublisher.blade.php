@@ -20,7 +20,7 @@
 
         <div class="main-form ms-3 mt-3 me-3">
             <h1>Update Profile</h1>
-            <form action="/updateProfileAdmin/{{ Auth::user()->id }}" enctype="multipart/form-data" method="POST">
+            <form action="/updateProfilePublisher/{{ Auth::user()->id }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="details-container d-flex flex-column">
                     <hr>
@@ -59,7 +59,7 @@
 
         <div class="main-form ms-3 mt-3 me-3">
             <h1>Update Credentials</h1>
-            <form action="/updateAccountAdmin/{{ Auth::user()->id }}" enctype="multipart/form-data" method="POST">
+            <form action="/updateAccountPublisher/{{ Auth::user()->id }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="details-container d-flex flex-column">
                     <hr>
