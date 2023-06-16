@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->dateTime('tr_date');
             $table->integer('total_item');
+            $table->boolean('subsPayment')->nullable()->default(false);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });

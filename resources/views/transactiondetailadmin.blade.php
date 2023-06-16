@@ -3,6 +3,7 @@
 @section('title', 'Transaction Details')
 
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/cartdetail.css') }}">
     <link rel="stylesheet" href="{{ asset('css/trdetail.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
@@ -19,30 +20,45 @@
             <h1>Customer: {{ $thdetail->users->name }}</h1>
             <table style="border-collapse: collapse">
                 <thead>
-                    <th>Book Cover</th>
-                    <th>Book Title</th>
-                    <th>Book Price</th>
-                    <th>Sub Total</th>
+                    @if ($thdetail->subsPayment)
+                        <th>Item Name</th>
+                        <th>Item Price</th>
+                        <th>Sub Total</th>
+                    @else
+                        <th>Book Cover</th>
+                        <th>Book Title</th>
+                        <th>Book Price</th>
+                        <th>Sub Total</th>
+                    @endif
                 </thead>
                 <tbody>
                     @foreach ($trdetail as $td)
                         <tr>
-                            <td>
-                                <img width="150px" height="180px" src="{{ Storage::url('books/' . $td->books->bookCover) }}">
-                            </td>
-                            <td>{{ $td->books->bookName }}</td>
-                            <td>{{ $td->books->bookPrice }}</td>
-                            @php
-                                $SubTotal = $td->books->bookPrice * 1;
-                                $TotalPrice += $td->books->bookPrice * 1;
-                            @endphp
-                            <td>Rp. {{ $SubTotal }}</td>
+                            @if ($thdetail->subsPayment)
+                                <td>{{ $td->subsName }}</td>
+                                <td>{{ $td->subsPrice }}</td>
+                                <td>{{ $td->subsPrice }}</td>
+                                @php
+                                    $TotalPrice = $td->subsPrice;
+                                @endphp
+                            @else
+                                <td>
+                                    <img class="book-pic-icon" src="{{ Storage::url('books/' . $td->books->bookCover) }}">
+                                </td>
+                                <td>{{ $td->books->bookName }}</td>
+                                <td>{{ $td->books->bookPrice }}</td>
+                                @php
+                                    $SubTotal = $td->books->bookPrice * 1;
+                                    $TotalPrice += $td->books->bookPrice * 1;
+                                @endphp
+                                <td>Rp. {{ $SubTotal }}</td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="tr-bot">
-                <h1 class = "fw-semibold">Total: Rp. {{ $TotalPrice }}</h1>
+                <h1 class="fw-semibold">Total: Rp. {{ $TotalPrice }}</h1>
             </div>
         </div>
     </div>

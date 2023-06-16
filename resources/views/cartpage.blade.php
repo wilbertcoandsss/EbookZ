@@ -37,12 +37,12 @@
                                 <img class="book-pic-icon" src="{{ Storage::url('books/' . $c->book->bookCover) }}">
                             </td>
                             <td>{{ $c->book->bookName }}</td>
-                            <td>{{ $c->book->bookPrice }}</td>
+                            <td>Rp. {{ $c->book->bookPrice }}</td>
                             @php
                                 $subTotal = $c->book->bookPrice * 1;
                                 $grandTotal = $grandTotal + $subTotal;
                             @endphp
-                            <td>{{ $subTotal }}</td>
+                            <td>Rp. {{ $subTotal }}</td>
                             <td>
                                 <div class="remove-cart">
                                     <a href="/deleteCart/{{ $c->id }}">Remove</a>
@@ -76,7 +76,7 @@
             </div>
         </div>
         <strong style="text-align: right; font-family: 'Poppins'; font-size: 25px;">Total Price :
-            {{ $grandTotal }}</strong>
+            Rp. {{ $grandTotal }}</strong>
         <div class="add-book-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
             {{-- /checkOut/{{ Auth::user()->id }} --}}
             <button>
@@ -87,6 +87,8 @@
     @else
     <div class="d-flex flex-column justify-content-center text-center mt-5 mb-5">
         <h1>You have no ongoing cart at the moment...</h1>
+        <br>
+        <br>
         <h1><a href = "/">Go Find One!</a></h1>
     </div>
     @endif

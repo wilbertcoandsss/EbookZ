@@ -165,40 +165,40 @@
 
     </div>
     <div class="d-flex flex-row justify-content-around info-box mt-5 mb-5 p-5 ms-5 me-5 rounded-5">
-        <div class="d-flex flex-col justify-content-evenly w-100 rec-book">
+        <div class="d-flex flex-col justify-content-between w-100 rec-book me-2">
             <div>
                 <img src="{{ Storage::url('assets/bestValue.png') }}">
             </div>
-            <div class="info-text">
+            <div class="info-text ms-3">
                 <h3>Best Value</h3>
-                <h5>Lorem ipsum dolor sit amet.</h5>
+                <h5>We offering the best value you can get.</h5>
             </div>
         </div>
-        <div class="d-flex flex-col justify-content-evenly w-100">
+        <div class="d-flex flex-col justify-content-between w-100 me-2">
             <div>
                 <img src="{{ Storage::url('assets/payment.png') }}">
             </div>
-            <div class="info-text">
+            <div class="info-text ms-3">
                 <h3>Secure Payment</h3>
-                <h5>Lorem ipsum dolor sit amet.</h5>
+                <h5>With trustful payment merchant, make your payment more secure.</h5>
             </div>
         </div>
-        <div class="d-flex flex-col justify-content-evenly w-100">
+        <div class="d-flex flex-col justify-content-between w-100 me-2">
             <div>
                 <img src="{{ Storage::url('assets/bestQuality.png') }}">
             </div>
-            <div class="info-text">
+            <div class="info-text ms-3">
                 <h3>Best Quality</h3>
-                <h5>Lorem ipsum dolor sit amet.</h5>
+                <h5>Best Book Store that you can get right now.</h5>
             </div>
         </div>
-        <div class="d-flex flex-col justify-content-evenly w-100">
+        <div class="d-flex flex-col justify-content-between w-100 me-2">
             <div>
                 <img src="{{ Storage::url('assets/247.png') }}">
             </div>
-            <div class="info-text">
+            <div class="info-text ms-3">
                 <h3>24/7 Support</h3>
-                <h5>Lorem ipsum dolor sit amet.</h5>
+                <h5>Always supports you. Anywhere. Anytime</h5>
             </div>
         </div>
     </div>

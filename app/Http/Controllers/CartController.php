@@ -26,7 +26,7 @@ class CartController extends Controller
     {
 
         if (!Auth::check()) {
-            return redirect('loginPage');
+            return redirect('loginPage')->with('message', "Login to your account first!");
         } else {
 
             $book = Book::find($id);

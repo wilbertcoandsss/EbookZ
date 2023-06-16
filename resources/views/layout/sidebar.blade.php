@@ -86,7 +86,7 @@
 <body>
     <div class="sidebar">
         <h2>
-            <a href = "/adminpage">
+            <a href = "/publisherpage">
                 <img class="brand-img logo" src="{{ Storage::url('assets/logo.png') }}">
             </a>
         </h2>

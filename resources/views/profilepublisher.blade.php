@@ -1,6 +1,6 @@
 @extends('layout.sidebar')
 
-@section('title', 'Add Book')
+@section('title', 'Profile Publisher')
 
 @section('content')
 

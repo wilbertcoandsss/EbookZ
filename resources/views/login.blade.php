@@ -1,10 +1,14 @@
 @extends('layout.header')
 
-@section('title', 'Homepage')
+@section('title', 'Login Page')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-
+    @if (Session::has('message'))
+        <div class="alert"><img class="success-alert" src="{{ Storage::url('assets/error.png') }}">
+            <h3>{{ Session::get('message') }}</h3>
+        </div>
+    @endif
     <div class="main-login-bg" style="height: 800px;">
         <div class="center-main-login d-flex flex-column justify-content-center"
             style="margin-left: 200px; margin-right: 200px">

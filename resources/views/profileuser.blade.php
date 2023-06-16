@@ -1,11 +1,11 @@
 @extends('layout.header')
 
-@section('title', 'Add Book')
+@section('title', 'Profile User')
 
 @section('content')
 
     <body>
-        {{-- <link rel="stylesheet" href="{{ asset('css/addBook.css') }}"> --}}
+            {{-- <link rel="stylesheet" href="{{ asset('css/addBook.css') }}"> --}}
         <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
         <link rel="stylesheet" href="{{ asset('css/manageMyBook.css') }}">
         <link rel="stylesheet" href="{{ asset('css/details.css') }}">
@@ -115,7 +115,7 @@
 
         <div class="main-form ms-5 mt-5 mb-5 me-5">
             <h1>Update Credentials</h1>
-            <form action="/updateAccountCusomter/{{ Auth::user()->id }}" enctype="multipart/form-data" method="POST">
+            <form action="/updateAccountCustomer/{{ Auth::user()->id }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="details-container d-flex flex-column">
                     <hr>

@@ -1,6 +1,6 @@
 @extends('layout.header')
 
-@section('title', 'Cartpage')
+@section('title', 'Read Confirmation')
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/beforeread.css') }}">

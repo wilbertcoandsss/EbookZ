@@ -1,6 +1,6 @@
 @extends('layout.sidebar')
 
-@section('title', 'Manage Book')
+@section('title', 'Edit Book')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/manageMyBook.css') }}">

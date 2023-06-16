@@ -1,6 +1,6 @@
 @extends('layout.header')
 
-@section('title', 'Homepage')
+@section('title', "Reading Book ($book->bookName)")
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/beforeread.css') }}">

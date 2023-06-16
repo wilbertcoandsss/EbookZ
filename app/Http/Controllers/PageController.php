@@ -268,27 +268,45 @@ class PageController extends Controller
     public function verifySubs($sid)
     {
         $subscribeStart = Carbon::now();
+        $subsPrice = 0;
+        $subsName = null;
 
         if (Auth::user()->isSubscribe) {
             $subscribeStart = Auth::user()->subscribeStart;
             if ($sid == 1) {
                 $subscribeEnd = Carbon::parse(Auth::user()->subscribeEnd)->addMonth(3);
+                $subsPrice = 150000;
+                $subsName = "Subscription Package (3 Months)";
             } else if ($sid == 2) {
                 $subscribeEnd = Carbon::parse(Auth::user()->subscribeEnd)->addMonth(6);
+                $subsPrice = 250000;
+                $subsName = "Subscription Package (6 Months)";
             } else if ($sid == 3) {
                 $subscribeEnd = Carbon::parse(Auth::user()->subscribeEnd)->addMonth(9);
+                $subsPrice = 400000;
+                $subsName = "Subscription Package (9 Months)";
             } else if ($sid == 4) {
                 $subscribeEnd = Carbon::parse(Auth::user()->subscribeEnd)->addMonth(12);
+                $subsPrice = 550000;
+                $subsName = "Subscription Package (12 Months)";
             }
         } else {
             if ($sid == 1) {
                 $subscribeEnd = Carbon::now()->addMonth(3);
+                $subsPrice = 150000;
+                $subsName = "Subscription Package (3 Months)";
             } else if ($sid == 2) {
                 $subscribeEnd = Carbon::now()->addMonth(6);
+                $subsPrice = 250000;
+                $subsName = "Subscription Package (6 Months)";
             } else if ($sid == 3) {
                 $subscribeEnd = Carbon::now()->addMonth(9);
+                $subsPrice = 40000;
+                $subsName = "Subscription Package (9 Months)";
             } else if ($sid == 4) {
                 $subscribeEnd = Carbon::now()->addMonth(12);
+                $subsPrice = 550000;
+                $subsName = "Subscription Package (12 Months)";
             }
         }
 
@@ -296,6 +314,27 @@ class PageController extends Controller
             'isSubscribe' => true,
             'subscribeStart' => $subscribeStart,
             'subscribeEnd' => $subscribeEnd
+        ]);
+
+        TransactionHeader::insert([
+            'user_id' => Auth::user()->id,
+            'tr_date' => Carbon::now(),
+            'total_item' => 1,
+            'subsPayment' => true,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+
+        $getLatestData = TransactionHeader::latest()->first();
+
+        TransactionDetail::insert([
+            'transaction_header_id' => $getLatestData->id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'subsPrice' => $subsPrice,
+            'subsName' => $subsName,
+            'book_id' => 1
         ]);
 
         return redirect('subscriptionPage')->with('message', 'Subscription added succesfully!');

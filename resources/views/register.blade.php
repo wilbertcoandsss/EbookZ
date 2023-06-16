@@ -1,6 +1,6 @@
 @extends('layout.header')
 
-@section('title', 'Homepage')
+@section('title', 'Register Page')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">

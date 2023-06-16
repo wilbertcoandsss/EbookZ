@@ -1,12 +1,15 @@
 @extends('layout.header')
 
-@section('title', 'Homepage')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/details.css') }}">
     @foreach ($bookDetail as $b)
         <div style="margin-left: 280px; margin-right: 280px;">
+            @php
+                $bookName = $b->bookName;
+            @endphp
+            @section('title', "Book Detail ($bookName)")
             <h1 style="font-family: 'Poppins'; font-weight: 600; ">Overviews</h1>
             <div style="margin-top: 40px;"></div>
             <div class="d-flex flex-row justify-content-center mt-1 mb-3 align-items-center">
@@ -78,11 +81,6 @@
                 <div class="details-box d-flex flex-row align-items-center">
                     <h5>PAGES</h5>
                     <h6>{{ $b->bookPage }}p.</h6>
-                </div>
-                <hr>
-                <div class="details-box d-flex flex-row align-items-center">
-                    <h5>STOCK</h5>
-                    <h6>{{ $b->bookStock }}</h6>
                 </div>
                 <hr>
                 <div class="details-box d-flex flex-row align-items-center">

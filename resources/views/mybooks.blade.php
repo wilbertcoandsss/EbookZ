@@ -1,6 +1,6 @@
 @extends('layout.header')
 
-@section('title', 'Homepage')
+@section('title', 'My Books')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -30,7 +30,7 @@
                         <form action="addToCart/{{ $randomBooks->id }}" method="POST">
                             @csrf
                             <button type="submit" class="mt-4 button-wishlist">
-                                Add to my wishlist
+                                Add to my cart
                             </button>
                             <input type="number" name="qty" style="display: none" value="1">
                         </form>

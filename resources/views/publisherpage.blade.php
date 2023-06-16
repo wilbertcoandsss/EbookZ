@@ -1,6 +1,6 @@
 @extends('layout.sidebar')
 
-@section('title', 'Admin Page')
+@section('title', 'Publisher Page')
 
 @section('content')
     <div class="d-flex justify-content-center align-items-center flex-column" style="padding-top: 170px;">

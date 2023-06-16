@@ -1,6 +1,6 @@
 @extends('layout.header')
 
-@section('title', 'Homepage')
+@section('title', 'Transaction History')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/cartdetail.css') }}">

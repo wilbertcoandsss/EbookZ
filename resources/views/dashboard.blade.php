@@ -1,6 +1,6 @@
 @extends('layout.sidebar')
 
-@section('title', 'Admin Page')
+@section('title', 'Publisher Page')
 
 @section('content')
     </style>

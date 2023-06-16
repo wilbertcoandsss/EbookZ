@@ -276,17 +276,17 @@ class BookController extends Controller
     public function searchBook(Request $req)
     {
         $search = $req->search;
-        $publisherId = Publisher::where('PublisherName', Auth::user()->name)->first();
-
-        $books = Book::where('bookName', 'LIKE', "%$search%")->where('publisherID', $publisherId->id)->get();
 
         $genre = Genre::all();
         $bestSeller = Book::inRandomOrder()->limit(4)->get();
         $bookSales = Book::where('isDiscount', 1)->limit(4)->get();
 
         if (Auth::check() && Auth::user()->role == 'Publisher') {
+            $publisherId = Publisher::where('PublisherName', Auth::user()->name)->first();
+            $books = Book::where('bookName', 'LIKE', "%$search%")->where('publisherID', $publisherId->id)->get();
             return view('managebook', ['books' => $books]);
         } else if (!Auth::check() || Auth::user()->role == 'customer') {
+            $books = Book::where('bookName', 'LIKE', "%$search%")->get();
             return view('library', ['books' => $books, 'genre' => $genre, 'bestseller' => $bestSeller, 'bookSales' => $bookSales]);
         }
     }
